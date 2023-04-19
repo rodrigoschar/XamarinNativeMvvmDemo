@@ -37,9 +37,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2FH-5i-5F8">
-                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QuJ-mM-mbB">
+                                <rect key="frame" x="36" y="179" width="321" height="619"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search By City Name" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5d-5m-Xat">
                                 <rect key="frame" x="20" y="103" width="353" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -47,34 +48,33 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="DUa-x6-xpa"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QuJ-mM-mbB">
-                                <rect key="frame" x="36" y="179" width="321" height="619"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QLC-Yz-avu">
+                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="QuJ-mM-mbB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Fnx-v4-26j"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QuJ-mM-mbB" secondAttribute="trailing" constant="20" id="OTB-Xs-aDh"/>
-                            <constraint firstItem="QuJ-mM-mbB" firstAttribute="top" secondItem="a5d-5m-Xat" secondAttribute="bottom" constant="20" id="S3l-IE-Frh"/>
-                            <constraint firstItem="2FH-5i-5F8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VlC-mc-PH0"/>
+                            <constraint firstItem="QuJ-mM-mbB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="BcV-gt-XqC"/>
+                            <constraint firstItem="QLC-Yz-avu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Fl0-6P-zfE"/>
+                            <constraint firstItem="QuJ-mM-mbB" firstAttribute="top" secondItem="a5d-5m-Xat" secondAttribute="bottom" constant="20" id="O38-2Z-pBs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QuJ-mM-mbB" secondAttribute="bottom" constant="20" id="SZm-iM-pTd"/>
                             <constraint firstAttribute="trailing" secondItem="a5d-5m-Xat" secondAttribute="trailing" constant="20" id="WoS-PQ-mAB"/>
                             <constraint firstItem="a5d-5m-Xat" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bTC-IO-i0C"/>
-                            <constraint firstItem="2FH-5i-5F8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gNR-VK-Vh0"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QuJ-mM-mbB" secondAttribute="bottom" constant="20" id="l8T-m1-3x1"/>
+                            <constraint firstItem="QLC-Yz-avu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fd2-cn-rqP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QuJ-mM-mbB" secondAttribute="trailing" constant="20" id="qOP-1v-SLc"/>
                             <constraint firstItem="a5d-5m-Xat" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="r0x-NQ-lRT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="A19-wC-A4w"/>
                     <connections>
-                        <outlet property="loadingActivityIndicator" destination="2FH-5i-5F8" id="dqR-Qj-ZS5"/>
+                        <outlet property="loadingActivityIndicator" destination="QLC-Yz-avu" id="ehd-yE-K1k"/>
                         <outlet property="searchWeatherSearchBar" destination="a5d-5m-Xat" id="477-DB-StJ"/>
                         <outlet property="weatherTableView" destination="QuJ-mM-mbB" id="g99-dl-HDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="-6"/>
+            <point key="canvasLocation" x="72.51908396946564" y="-6.3380281690140849"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

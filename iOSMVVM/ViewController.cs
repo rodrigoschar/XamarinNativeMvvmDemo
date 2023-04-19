@@ -28,6 +28,7 @@ namespace iOSMVVM
             weatherTableView.RegisterNibForCellReuse(WeatherTableViewCell.Nib, WeatherTableViewCell.Key);
             weatherTableView.DataSource = new WeatherTableViewSource(this);
             searchWeatherSearchBar.Delegate = new WeatherViewControllerSearchBarDelegate(this);
+            loadingActivityIndicator.Hidden = true;
 
             viewModel.PropertyChanged += UpdateProperties;
         }
