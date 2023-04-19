@@ -1,0 +1,8 @@
+﻿<resources>
+    <string name="app_name">AndroidMVVM</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_city">Search By City Name</string>
+    <string name="search">Search</string>
+    <string name="progress_bar">Loading...</string>
+</resources>
+
