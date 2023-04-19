@@ -20,6 +20,7 @@ using Google.Android.Material.TextField;
 using SharedCode.Interfaces;
 using SharedCode.Models;
 using SharedCode.Utils;
+using SharedCode.ViewModels;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 using static Java.Util.Jar.Attributes;
 
@@ -28,7 +29,7 @@ namespace AndroidMVVM.Views
     public class SearchCityWeatherFragment : AndroidX.Fragment.App.Fragment
     {
         private TextInputEditText searchInput;
-        public SearchCityViewModel viewModel; 
+        public SearchWeatherViewModel viewModel; 
         private RecyclerView recyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private List<ListResponse> weatherList;
@@ -44,7 +45,7 @@ namespace AndroidMVVM.Views
         {
             Android.Views.View view = inflater.Inflate(Resource.Layout.fragment_search_city_weather, container, false);
 
-            viewModel = Ioc.Default.GetRequiredService<SearchCityViewModel>();
+            viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
 
             weatherList = new List<ListResponse>();
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.rv_weatherList);

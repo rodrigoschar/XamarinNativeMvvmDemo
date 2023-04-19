@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using UIKit;
 using iOSMVVM.ViewModels;
+using SharedCode.ViewModels;
 
 namespace iOSMVVM
 {
@@ -23,7 +24,7 @@ namespace iOSMVVM
                  new ServiceCollection()
                  .AddSingleton<INetworkHandler, NetworkHandlerManager>()
                  .AddSingleton<IClimateService, ClimateService>()
-                 .AddTransient<SearchCityViewModel>()
+                 .AddTransient<SearchWeatherViewModel>()
                  .BuildServiceProvider());
 
             return true;

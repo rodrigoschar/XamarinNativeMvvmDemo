@@ -4,6 +4,7 @@ using Foundation;
 using iOSMVVM.ViewModels;
 using iOSMVVM.Views.Cells;
 using SharedCode.Models;
+using SharedCode.ViewModels;
 using System;
 using System.Collections.Generic;
 using UIKit;
@@ -12,7 +13,7 @@ namespace iOSMVVM
 {
     public partial class ViewController : UIViewController
     {
-        public SearchCityViewModel viewModel;
+        public SearchWeatherViewModel viewModel;
         private List<ListResponse> weatherList = new List<ListResponse>();
 
         public ViewController (IntPtr handle) : base (handle)
@@ -22,7 +23,7 @@ namespace iOSMVVM
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            viewModel = Ioc.Default.GetRequiredService<SearchCityViewModel>();
+            viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
 
             weatherTableView.RegisterNibForCellReuse(WeatherTableViewCell.Nib, WeatherTableViewCell.Key);
             weatherTableView.DataSource = new WeatherTableViewSource(this);
