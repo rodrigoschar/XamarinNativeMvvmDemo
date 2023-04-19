@@ -21,7 +21,7 @@ namespace AndroidMVVM
                 .AddSingleton<INetworkHandler, NetworkHandlerManager>()
                 .AddSingleton<IClimateService, ClimateService>()
                 .AddTransient<SearchCityViewModel>()
-                .BuildServiceProvider()); ;
+                .BuildServiceProvider());
         }
     }
 }
