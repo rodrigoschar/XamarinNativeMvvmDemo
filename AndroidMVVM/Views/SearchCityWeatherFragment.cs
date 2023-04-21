@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidMVVM.Adapters;
 using AndroidMVVM.ViewModels;
+using AndroidX.AppCompat.App;
 using AndroidX.RecyclerView.Widget;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -21,6 +22,7 @@ using SharedCode.Interfaces;
 using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
+using Xamarin.Essentials;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 using static Java.Util.Jar.Attributes;
 
@@ -52,6 +54,7 @@ namespace AndroidMVVM.Views
             mLayoutManager = new LinearLayoutManager(view.Context);
             recyclerView.SetLayoutManager(mLayoutManager);
             adapter = new WeatherAdapter(weatherList);
+            adapter.ItemClick += GoToDetailItemClick;
             recyclerView.SetAdapter(adapter);
 
             AndroidX.AppCompat.App.AlertDialog.Builder dialogBuilder = new AndroidX.AppCompat.App.AlertDialog.Builder(view.Context);
@@ -62,7 +65,8 @@ namespace AndroidMVVM.Views
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
             searchButton.Click += SearchWeather;
 
-            viewModel.PropertyChanged += UpdateProperties;
+            //viewModel.PropertyChanged += UpdateProperties;
+            viewModel.weatherCollection.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
         }
@@ -74,6 +78,9 @@ namespace AndroidMVVM.Views
             {
                 progressDialog.Show();
                 viewModel.GetWeatherByCityName(city);
+            } else
+            {
+                viewModel.RemoveItemList();
             }  
         }
 
@@ -88,6 +95,29 @@ namespace AndroidMVVM.Views
                 (recyclerView.GetAdapter() as WeatherAdapter).UpdateList(weatherList);
                 progressDialog.Dismiss();
             }
+        }
+
+        private void UpdatedCollectionProp()
+        {
+            if (viewModel.weatherCollection != null) // propWeatherList != null && 
+            {
+                weatherList = viewModel.weatherCollection.ToList();
+                (recyclerView.GetAdapter() as WeatherAdapter).UpdateList(weatherList);
+                progressDialog.Dismiss();
+            }
+        }
+
+        private void GoToDetailItemClick(object sender, int e)
+        {
+            CityWeatherDetailFragment detailFragment = new CityWeatherDetailFragment();
+
+            var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
+            var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
+            fragmentTransaction.Hide(this);
+            fragmentTransaction.Add(Resource.Id.fragmentContainer, detailFragment, "CityWeatherDetailFragment");
+            fragmentTransaction.AddToBackStack("CityWeatherDetailFragment");
+            fragmentTransaction.Commit();
+            viewModel.SetSelectedCity(e);
         }
     }
 }

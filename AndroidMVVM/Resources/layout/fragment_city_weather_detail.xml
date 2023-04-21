@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:padding="10dp">
+
+	<ImageView
+		android:src="@android:drawable/ic_menu_gallery"
+		android:layout_width="fill_parent"
+		android:layout_height="300dp"
+		android:id="@+id/iv_countryFlag"
+		android:adjustViewBounds="true"
+		android:contentDescription="" />
+
+    <TextView
+        android:id="@+id/tv_dtCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:text="Santa Cruz"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:textAlignment="textStart"
+        android:paddingStart="8dp" />
+
+    <TextView
+        android:id="@+id/tv_dtCurrentWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:text="Santa Cruz"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:textAlignment="textStart"
+        android:paddingStart="8dp" />
+
+    <TextView
+        android:id="@+id/tv_dtCurrentTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:text="Santa Cruz"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:textAlignment="textStart"
+        android:paddingStart="8dp" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_drMinTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+		    android:text="24"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="textStart"
+            android:paddingStart="8dp" />
+
+        <View
+            android:layout_width="wrap_content"
+	        android:layout_height="1dp"
+	        android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_dtMaxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+		    android:text="30"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="textEnd"
+            android:paddingEnd="8dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

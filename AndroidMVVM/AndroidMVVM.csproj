@@ -66,6 +66,7 @@
     <Compile Include="Adapters\WeatherAdapter.cs" />
     <Compile Include="AndroidApplication.cs" />
     <Compile Include="ViewModels\SearchCityViewModel.cs" />
+    <Compile Include="Views\CityWeatherDetailFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,6 +120,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\progress_bar.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_city_weather_detail.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

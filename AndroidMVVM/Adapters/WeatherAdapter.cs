@@ -12,6 +12,7 @@ namespace AndroidMVVM.Adapters
     public class WeatherAdapter : RecyclerView.Adapter
     {
         public List<ListResponse> weatherList;
+        public event EventHandler<int> ItemClick;
 
         public WeatherAdapter(List<ListResponse> list)
         {
@@ -39,7 +40,7 @@ namespace AndroidMVVM.Adapters
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             Android.Views.View view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.weather_card, parent, false);
-            WeatherViewHolder viewHolder = new WeatherViewHolder(view);
+            WeatherViewHolder viewHolder = new WeatherViewHolder(view, OnClick);
             return viewHolder;
         }
 
@@ -52,7 +53,7 @@ namespace AndroidMVVM.Adapters
             public TextView tvMinTemp { get; set; }
             public TextView tvMaxTemp { get; set; }
 
-            public WeatherViewHolder(Android.Views.View card) : base(card)
+            public WeatherViewHolder(Android.Views.View card, Action<int> listener) : base(card)
             {
                 tvCityName = card.FindViewById<TextView>(Resource.Id.tv_cityName);
                 tvCountryName = card.FindViewById<TextView>(Resource.Id.tv_countryName);
@@ -60,6 +61,7 @@ namespace AndroidMVVM.Adapters
                 tvCurrentTemp = card.FindViewById<TextView>(Resource.Id.tv_currentTemp);
                 tvMinTemp = card.FindViewById<TextView>(Resource.Id.tv_minTemp);
                 tvMaxTemp = card.FindViewById<TextView>(Resource.Id.tv_maxTemp);
+                card.Click += (sender, e) => listener(base.AdapterPosition);
             }
         }
 
@@ -75,6 +77,12 @@ namespace AndroidMVVM.Adapters
             {
                 NotifyItemRangeChanged(0, this.weatherList.Count());
             }
+        }
+
+        private void OnClick(int obj)
+        {
+            if (ItemClick != null)
+                ItemClick(this, obj);
         }
     }
 }
