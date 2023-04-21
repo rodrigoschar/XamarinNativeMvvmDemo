@@ -127,11 +127,13 @@
         <Folder Include="ViewModels\" />
         <Folder Include="Views\" />
         <Folder Include="Views\Cells\" />
+        <Folder Include="Controllers\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
         <InterfaceDefinition Include="Views\Cells\WeatherTableViewCell.xib" />
+        <InterfaceDefinition Include="Controllers\WeatherDetailViewController.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -149,6 +151,10 @@
         <Compile Include="Views\Cells\WeatherTableViewCell.cs" />
         <Compile Include="Views\Cells\WeatherTableViewCell.designer.cs">
           <DependentUpon>WeatherTableViewCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Controllers\WeatherDetailViewController.cs" />
+        <Compile Include="Controllers\WeatherDetailViewController.designer.cs">
+          <DependentUpon>WeatherDetailViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

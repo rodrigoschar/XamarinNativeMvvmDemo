@@ -1,12 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CoreAudioKit;
+using CoreGraphics;
 using Foundation;
+using iOSMVVM.Controllers;
 using iOSMVVM.ViewModels;
 using iOSMVVM.Views.Cells;
 using SharedCode.Models;
 using SharedCode.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UIKit;
 
 namespace iOSMVVM
@@ -26,11 +29,11 @@ namespace iOSMVVM
             viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
 
             weatherTableView.RegisterNibForCellReuse(WeatherTableViewCell.Nib, WeatherTableViewCell.Key);
-            weatherTableView.DataSource = new WeatherTableViewSource(this);
+            weatherTableView.Source = new WeatherTableViewSource(this);
             searchWeatherSearchBar.Delegate = new WeatherViewControllerSearchBarDelegate(this);
             loadingActivityIndicator.Hidden = true;
 
-            viewModel.PropertyChanged += UpdateProperties;
+            viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
         }
 
         public override void DidReceiveMemoryWarning ()
@@ -38,27 +41,27 @@ namespace iOSMVVM
             base.DidReceiveMemoryWarning ();
         }
 
-        private void UpdateProperties(object sender, EventArgs eventArgs)
+        private void UpdatedCollectionProp()
         {
-            var propWeatherList = sender.GetType().GetProperty("WeatherList");
-
-            if (viewModel.WeatherList != null) // propWeatherList != null && 
+            if (viewModel.weatherResponses != null)
             {
+                weatherList = viewModel.weatherResponses.ToList();
                 loadingActivityIndicator.StopAnimating();
                 loadingActivityIndicator.Hidden = true;
-                weatherList = viewModel.WeatherList;
                 weatherTableView.ReloadData();
                 UIApplication.SharedApplication.KeyWindow.EndEditing(true);
             }
         }
 
-        public class WeatherTableViewSource : UITableViewDataSource
+        public class WeatherTableViewSource : UITableViewSource
         {
             ViewController viewController;
-            public WeatherTableViewSource(ViewController owner)
+
+            public WeatherTableViewSource(ViewController viewController)
             {
-                this.viewController = owner;
+                this.viewController = viewController;
             }
+
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
             {
                 WeatherTableViewCell cell = (WeatherTableViewCell)tableView.DequeueReusableCell(WeatherTableViewCell.Key, indexPath);
@@ -66,6 +69,18 @@ namespace iOSMVVM
                 cell.Data = data;
                 return cell;
             }
+
+            public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+            {
+                WeatherDetailViewController detailViewController = viewController.Storyboard.InstantiateViewController("WeatherDetailViewController") as WeatherDetailViewController;
+                if (detailViewController != null)
+                {
+                    detailViewController.selected = viewController.weatherList[indexPath.Row];
+                    viewController.NavigationController.PushViewController(detailViewController, true);
+                }
+                tableView.DeselectRow(indexPath, true);
+            }
+
             public override nint RowsInSection(UITableView tableview, nint section)
             {
                 return viewController.weatherList.Count;
