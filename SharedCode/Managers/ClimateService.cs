@@ -42,6 +42,29 @@ namespace SharedCode.Managers
                 return Result.Fail<List<ListResponse>>($"Check your internet connection {ex}");
             }
         }
+
+        public async Task<Result<byte[]>> GetWeatherImage(string iconId)
+        {
+            try
+            {
+                var data = await NetworkHandler.LoadImage(Constants.ClimateIconUrl + iconId + "@2x.png");
+                return Result.Ok<byte[]>(data);
+            }
+            catch (NetworkErrorException ex)
+            {
+                switch (ex.Code)
+                {
+                    case (int)HttpStatusCode.NotFound:
+                        return Result.Fail<byte[]>("Can't retrieve weather image");
+                    default:
+                        return Result.Fail<byte[]>(ex.Message ?? "Something went wrong");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail<byte[]>($"Check your internet connection {ex.ToString()}");
+            }
+        }
     }
 }
 

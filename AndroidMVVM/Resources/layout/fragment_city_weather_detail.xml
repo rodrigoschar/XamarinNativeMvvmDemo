@@ -9,7 +9,7 @@
 		android:src="@android:drawable/ic_menu_gallery"
 		android:layout_width="fill_parent"
 		android:layout_height="300dp"
-		android:id="@+id/iv_countryFlag"
+		android:id="@+id/iv_weather"
 		android:adjustViewBounds="true"
 		android:contentDescription="" />
 

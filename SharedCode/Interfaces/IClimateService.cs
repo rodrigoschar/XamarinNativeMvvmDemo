@@ -9,6 +9,7 @@ namespace SharedCode.Interfaces
 	public interface IClimateService
 	{
         Task<Result<List<ListResponse>>> GetWeatherByCitiName(string cityName);
+        Task<Result<byte[]>> GetWeatherImage(string iconId);
     }
 }
 

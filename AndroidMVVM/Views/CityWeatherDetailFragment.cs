@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -23,6 +24,7 @@ namespace AndroidMVVM.Views
 {
     public class CityWeatherDetailFragment :AndroidX.Fragment.App.Fragment
     {
+        private ImageView ivClimate;
         private TextView tvCityName;
         private TextView tvWeather;
         private TextView tvCurrentTemp;
@@ -42,6 +44,7 @@ namespace AndroidMVVM.Views
 
             viewModel = Ioc.Default.GetRequiredService<CityWeatherViewModel>();
 
+            ivClimate = view.FindViewById<ImageView>(Resource.Id.iv_weather);
             tvCityName = view.FindViewById<TextView>(Resource.Id.tv_dtCityName);
             tvWeather = view.FindViewById<TextView>(Resource.Id.tv_dtCurrentWeather);
             tvCurrentTemp = view.FindViewById<TextView>(Resource.Id.tv_dtCurrentTemp);
@@ -64,6 +67,12 @@ namespace AndroidMVVM.Views
                 tvCurrentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
                 tvMinTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
                 tvMaxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+            }
+
+            if (viewModel.ImageBytes != null)
+            {
+                var bitmap = BitmapFactory.DecodeByteArray(viewModel.ImageBytes, 0, viewModel.ImageBytes.Length);
+                ivClimate.SetImageBitmap(bitmap);
             }
         }
     }

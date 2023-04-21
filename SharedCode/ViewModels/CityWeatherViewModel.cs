@@ -18,6 +18,7 @@ namespace SharedCode.ViewModels
         private ListResponse weatherResponse;
         private string test;
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
+        private byte[] imageBytes;
 
         public CityWeatherViewModel(IClimateService service)
 		{
@@ -36,9 +37,16 @@ namespace SharedCode.ViewModels
             private set => SetProperty(ref test, value);
         }
 
+        public byte[] ImageBytes
+        {
+            get => imageBytes;
+            private set => SetProperty(ref imageBytes, value);
+        }
+
         public void setData(ListResponse data)
         {
             WeatherResponse = data;
+            setWeatherData(weatherResponse.Weather.FirstOrDefault().Icon);
             /*WeakReferenceMessenger.Default.Register<SelectedItemMessage>(this, (r, m) =>
             {
                 WeatherResponse = m.Value;
@@ -54,7 +62,14 @@ namespace SharedCode.ViewModels
         private void OnMessageReceived(string value)
         {
             Console.WriteLine($"New message received: {value}");
-        } 
+        }
+
+        public async void setWeatherData(string iconId)
+        {
+            var data = await Service.GetWeatherImage(iconId);
+            if (data.IsFailure) return;
+            ImageBytes = data.Value;
+        }
     }
 }
 

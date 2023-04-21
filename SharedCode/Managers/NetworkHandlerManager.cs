@@ -27,6 +27,19 @@ namespace SharedCode.Managers
             }
         }
 
+        public async Task<byte[]> LoadImage(string imageUrl)
+        {
+            try
+            {
+                Task<byte[]> contentsTask = httpClient.GetByteArrayAsync(imageUrl);
+                return await contentsTask;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void CheckNetworkException(HttpResponseMessage response)
         {
             switch (response.StatusCode)

@@ -3766,7 +3766,7 @@ namespace AndroidMVVM
 			public const int item_touch_helper_previous_elevation = 2131230846;
 			
 			// aapt resource value: 0x7F08007F
-			public const int iv_countryFlag = 2131230847;
+			public const int iv_weather = 2131230847;
 			
 			// aapt resource value: 0x7F080080
 			public const int labeled = 2131230848;
