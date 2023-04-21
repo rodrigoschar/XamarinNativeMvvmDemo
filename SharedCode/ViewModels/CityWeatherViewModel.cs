@@ -13,7 +13,7 @@ using Xamarin.Essentials;
 
 namespace SharedCode.ViewModels
 {
-	public partial class CityWeatherViewModel : ObservableObject, IRecipient<SelectedSrtItemMessage>
+	public partial class CityWeatherViewModel : ObservableObject
     {
         private ListResponse weatherResponse;
         private string test;
@@ -22,18 +22,6 @@ namespace SharedCode.ViewModels
         public CityWeatherViewModel(IClimateService service)
 		{
             Service = service;
-            //WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this);
-            /*WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
-            {
-                //MainThread.BeginInvokeOnMainThread(() =>
-                //{
-                Test = m.Value;
-                //});
-            });*/
-            /*WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
-            {
-                OnMessageReceived(m.Value);
-            });*/
         }
 
         public ListResponse WeatherResponse
@@ -48,20 +36,12 @@ namespace SharedCode.ViewModels
             private set => SetProperty(ref test, value);
         }
 
-        public void GetData()
+        public void setData(ListResponse data)
         {
-            //Test = "Hola";
+            WeatherResponse = data;
             /*WeakReferenceMessenger.Default.Register<SelectedItemMessage>(this, (r, m) =>
             {
                 WeatherResponse = m.Value;
-            });*/
-
-            /*StrongReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
-            {
-                //MainThread.BeginInvokeOnMainThread(() =>
-                //{
-                    Test = m.Value;
-                //});
             });*/
             Console.WriteLine(1);
             WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
@@ -74,36 +54,7 @@ namespace SharedCode.ViewModels
         private void OnMessageReceived(string value)
         {
             Console.WriteLine($"New message received: {value}");
-        }
-
-        public void Receive(SelectedSrtItemMessage message)
-        {
-            Test = message.Value;
-            /*WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
-            {
-                //MainThread.BeginInvokeOnMainThread(() =>
-                //{
-                Test = m.Value;
-                //});
-            });*/
-        }
-
-        /*protected override void OnActivated()
-        {
-            // We use a method group here, but a lambda expression is also valid
-            Messenger.Register<CityWeatherViewModel, WeatherChangedMessage>(this, (r, m) => r.WeatherResponse = m.Value);
-            //Messenger.Register<CityWeatherViewModel, PropertyChangedMessage<ListResponse>>(this, (r, m) => r.Receive(m));
-        }*/
-
-        /*public void Receive(PropertyChangedMessage<ListResponse> message)
-        {
-            if (message.Sender.GetType() == typeof(SearchWeatherViewModel) &&
-            message.PropertyName == nameof(SearchWeatherViewModel.SelectedResponse))
-            {
-                WeatherResponse = WeakReferenceMessenger.Default.Send<CurrentWeatherRequestMessage>();
-                WeatherResponse = message.NewValue;
-            }
-        }*/
+        } 
     }
 }
 

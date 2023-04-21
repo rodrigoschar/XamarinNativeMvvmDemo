@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
 using Xamarin.Essentials;
@@ -27,7 +28,8 @@ namespace AndroidMVVM.Views
         private TextView tvCurrentTemp;
         private TextView tvMinTemp;
         private TextView tvMaxTemp;
-        public CityWeatherViewModel viewModel;
+        private CityWeatherViewModel viewModel;
+        public ListResponse selected;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,24 +49,22 @@ namespace AndroidMVVM.Views
             tvMaxTemp = view.FindViewById<TextView>(Resource.Id.tv_dtMaxTemp);
             
             viewModel.PropertyChanged += SetupView;
-            viewModel.GetData();
+            if (selected != null)
+                viewModel.setData(selected);
             
             return view;
         }
 
         private void SetupView(object sender, EventArgs eventArgs)
         {
-            if (viewModel.Test != null)
+            if (viewModel.WeatherResponse != null)
             {
-                var result = viewModel.Test;
-                tvCityName.Text = result;
+                tvCityName.Text = "City Name: " + viewModel.WeatherResponse.Name;
+                tvWeather.Text = "Weather: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
+                tvCurrentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+                tvMinTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+                tvMaxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
             }
-                
-            //tvCityName.Text = "City Name: " + viewModel.WeatherResponse.Name;
-            //tvWeather.Text = "Weather: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
-            //tvCurrentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
-            //tvMinTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
-            //tvMaxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
         }
     }
 }

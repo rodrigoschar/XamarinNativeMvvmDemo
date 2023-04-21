@@ -1,8 +1,10 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -65,8 +67,8 @@ namespace AndroidMVVM.Views
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
             searchButton.Click += SearchWeather;
 
-            //viewModel.PropertyChanged += UpdateProperties;
-            viewModel.weatherCollection.CollectionChanged += (s, e) => UpdatedCollectionProp();
+            //viewModel.weatherCollection.CollectionChanged += (s, e) => UpdatedCollectionProp();
+            viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
         }
@@ -84,24 +86,11 @@ namespace AndroidMVVM.Views
             }  
         }
 
-        private void UpdateProperties(object sender, EventArgs eventArgs)
-        {
-            var propTest = sender.GetType().GetProperty("Test");
-            var propWeatherList = sender.GetType().GetProperty("WeatherList");
-            
-            if (viewModel.WeatherList != null) // propWeatherList != null && 
-            {
-                weatherList = viewModel.WeatherList;
-                (recyclerView.GetAdapter() as WeatherAdapter).UpdateList(weatherList);
-                progressDialog.Dismiss();
-            }
-        }
-
         private void UpdatedCollectionProp()
         {
-            if (viewModel.weatherCollection != null) // propWeatherList != null && 
+            if (viewModel.weatherResponses != null)
             {
-                weatherList = viewModel.weatherCollection.ToList();
+                weatherList = viewModel.weatherResponses.ToList();
                 (recyclerView.GetAdapter() as WeatherAdapter).UpdateList(weatherList);
                 progressDialog.Dismiss();
             }
@@ -110,6 +99,8 @@ namespace AndroidMVVM.Views
         private void GoToDetailItemClick(object sender, int e)
         {
             CityWeatherDetailFragment detailFragment = new CityWeatherDetailFragment();
+            ListResponse selected = weatherList[e];
+            detailFragment.selected = selected;
 
             var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
             var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
@@ -117,7 +108,7 @@ namespace AndroidMVVM.Views
             fragmentTransaction.Add(Resource.Id.fragmentContainer, detailFragment, "CityWeatherDetailFragment");
             fragmentTransaction.AddToBackStack("CityWeatherDetailFragment");
             fragmentTransaction.Commit();
-            viewModel.SetSelectedCity(e);
+            //viewModel.SetSelectedCity(e);
         }
     }
 }

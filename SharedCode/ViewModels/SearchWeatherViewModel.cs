@@ -16,27 +16,16 @@ namespace SharedCode.ViewModels
 {
 	public partial class SearchWeatherViewModel : ObservableObject
     {
-        private List<ListResponse> weatherList;
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
-        public ObservableCollection<ListResponse> weatherCollection; //{ get; }//new ObservableCollection<ListResponse>();//new();//{ get; }
+        public ObservableCollection<ListResponse> weatherCollection;
+        public ObservableRangeCollection<ListResponse> weatherResponses;
         private ListResponse selectedResponse;
-        //public ICommand RequestCurrentUsernameCommand { get; }
-        //[ObservableProperty]
-        //public RelayCommand PlayStopCommand;
 
         public SearchWeatherViewModel(IClimateService service)
 		{
-            //RequestCurrentUsernameCommand = new RelayCommand(RequestCurrentUsername);
             weatherCollection = new ObservableCollection<ListResponse>();
+            weatherResponses = new ObservableRangeCollection<ListResponse>();
             Service = service;
-
-           
-        }
-
-        public List<ListResponse> WeatherList
-        {
-            get => weatherList;
-            set => SetProperty(ref weatherList, value);
         }
 
         public ObservableCollection<ListResponse> WeatherCollection
@@ -51,49 +40,29 @@ namespace SharedCode.ViewModels
             set => SetProperty(ref selectedResponse, value);
         }
 
-        /*protected override void OnActivated()
-        {
-            Messenger.Register<SearchWeatherViewModel, CurrentWeatherRequestMessage>(this, (r, m) => m.Reply(r.SelectedResponse));
-        }*/
-
         public async void GetWeatherByCityName(string cityName)
         {
             var data = await Service.GetWeatherByCitiName(cityName);
             var list = new List<ListResponse>();
             foreach (var item in data.Value)
             {
-                weatherCollection.Add(item);
+                //WeatherCollection.Add(item);
                 list.Add(item);
             }
-            WeatherList = list;
-            //WeatherCollection.AddRange(list);
-            //var collection = new ObservableCollection<ListResponse>(list);
-            //WeatherCollection = new ObservableCollection<ListResponse>(list);//(ObservableCollection<ListResponse>)list.ToCollection<ListResponse>();
-            //weatherCollection = (ObservableCollection<ListResponse>)list.ToCollection<ListResponse>();
+            weatherResponses.ReplaceRange(list);
         }
 
         public void RemoveItemList()
         {
-            WeatherList.RemoveAt(1);
-            weatherCollection.RemoveAt(1);
+            weatherResponses.RemoveAt(1);
         }
 
-        //[RelayCommand]
         public void SetSelectedCity(int index)
         {
             SelectedResponse = weatherCollection[index];
             //WeakReferenceMessenger.Default.Send(new SelectedItemMessage(SelectedResponse));
             WeakReferenceMessenger.Default.Send(new SelectedSrtItemMessage("It Works"));
-            //Messenger.Send(new WeatherChangedMessage(SelectedResponse));
-            //PlayStopCommand = new RelayCommand(() => RequestCurrentUsername("It Works"));
-            //weatherCollection.ToList().I;
         }
-
-        /*[RelayCommand]
-        public void RequestCurrentUsername(string name)
-        {
-            WeakReferenceMessenger.Default.Send(new SelectedSrtItemMessage("It Works"));
-        }*/
     }
 }
 
