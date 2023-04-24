@@ -21,8 +21,11 @@ namespace SharedCode.ViewModels
         public ObservableRangeCollection<ListResponse> weatherResponses;
         private ListResponse selectedResponse;
 
-        public SearchWeatherViewModel(IClimateService service)
+        private INavigationService navigationService;
+
+        public SearchWeatherViewModel(IClimateService service, INavigationService navigationService)
 		{
+            this.navigationService = navigationService;
             weatherCollection = new ObservableCollection<ListResponse>();
             weatherResponses = new ObservableRangeCollection<ListResponse>();
             Service = service;
@@ -62,6 +65,11 @@ namespace SharedCode.ViewModels
             SelectedResponse = weatherCollection[index];
             //WeakReferenceMessenger.Default.Send(new SelectedItemMessage(SelectedResponse));
             WeakReferenceMessenger.Default.Send(new SelectedSrtItemMessage("It Works"));
+        }
+
+        public void GoToDetails(ListResponse selected)
+        {
+            navigationService.ShowDetails(selected);
         }
     }
 }

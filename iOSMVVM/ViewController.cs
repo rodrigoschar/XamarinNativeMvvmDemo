@@ -5,6 +5,7 @@ using Foundation;
 using iOSMVVM.Controllers;
 using iOSMVVM.ViewModels;
 using iOSMVVM.Views.Cells;
+using SharedCode.Interfaces;
 using SharedCode.Models;
 using SharedCode.ViewModels;
 using System;
@@ -72,12 +73,7 @@ namespace iOSMVVM
 
             public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
             {
-                WeatherDetailViewController detailViewController = viewController.Storyboard.InstantiateViewController("WeatherDetailViewController") as WeatherDetailViewController;
-                if (detailViewController != null)
-                {
-                    detailViewController.selected = viewController.weatherList[indexPath.Row];
-                    viewController.NavigationController.PushViewController(detailViewController, true);
-                }
+                viewController.viewModel.GoToDetails(viewController.weatherList[indexPath.Row]);
                 tableView.DeselectRow(indexPath, true);
             }
 

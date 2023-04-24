@@ -2,6 +2,7 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Foundation;
+using SharedCode.Interfaces;
 using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;

@@ -14,6 +14,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidMVVM.Adapters;
+using AndroidMVVM.Navigation;
 using AndroidMVVM.ViewModels;
 using AndroidX.AppCompat.App;
 using AndroidX.RecyclerView.Widget;
@@ -98,17 +99,8 @@ namespace AndroidMVVM.Views
 
         private void GoToDetailItemClick(object sender, int e)
         {
-            CityWeatherDetailFragment detailFragment = new CityWeatherDetailFragment();
             ListResponse selected = weatherList[e];
-            detailFragment.selected = selected;
-
-            var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
-            var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
-            fragmentTransaction.Hide(this);
-            fragmentTransaction.Add(Resource.Id.fragmentContainer, detailFragment, "CityWeatherDetailFragment");
-            fragmentTransaction.AddToBackStack("CityWeatherDetailFragment");
-            fragmentTransaction.Commit();
-            //viewModel.SetSelectedCity(e);
+            viewModel.GoToDetails(selected);
         }
     }
 }

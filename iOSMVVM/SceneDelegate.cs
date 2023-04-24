@@ -1,5 +1,8 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Foundation;
+using iOSMVVM.Navigation;
+using SharedCode.Interfaces;
 using UIKit;
 
 namespace NewSingleViewTemplate {
@@ -9,13 +12,20 @@ namespace NewSingleViewTemplate {
 		[Export ("window")]
 		public UIWindow Window { get; set; }
 
-		[Export ("scene:willConnectToSession:options:")]
+        private INavigationService navigationService;
+
+        [Export ("scene:willConnectToSession:options:")]
 		public void WillConnect (UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
 		{
-			// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-			// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-			// This delegate does not imply the connecting scene or session are new (see UIApplicationDelegate `GetConfiguration` instead).
-		}
+            navigationService = Ioc.Default.GetRequiredService<INavigationService>();
+
+            navigationService.StartNavigation();
+
+            UIWindowScene myScene = scene as UIWindowScene;
+			Window = new UIWindow(myScene);
+			Window.RootViewController = Ioc.Default.GetRequiredService<CustomNavigationController>();
+            Window.MakeKeyAndVisible();
+        }
 
 		[Export ("sceneDidDisconnect:")]
 		public void DidDisconnect (UIScene scene)

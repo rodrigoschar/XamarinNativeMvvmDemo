@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using UIKit;
 using iOSMVVM.ViewModels;
 using SharedCode.ViewModels;
+using iOSMVVM.Navigation;
 
 namespace iOSMVVM
 {
@@ -17,6 +18,8 @@ namespace iOSMVVM
         [Export("window")]
         public UIWindow Window { get; set; }
 
+        //private INavigationService navigationService;
+
         [Export ("application:didFinishLaunchingWithOptions:")]
         public bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
@@ -24,10 +27,11 @@ namespace iOSMVVM
                  new ServiceCollection()
                  .AddSingleton<INetworkHandler, NetworkHandlerManager>()
                  .AddSingleton<IClimateService, ClimateService>()
+                 .AddSingleton<INavigationService, NavigationService>()
+                 .AddSingleton<CustomNavigationController>()
                  .AddTransient<SearchWeatherViewModel>()
                  .AddTransient<CityWeatherViewModel>()
                  .BuildServiceProvider());
-
             return true;
         }
 

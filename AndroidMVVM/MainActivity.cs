@@ -10,24 +10,23 @@ using Google.Android.Material.Snackbar;
 using Xamarin.Essentials;
 using AndroidMVVM.Views;
 using SharedCode.Models;
+using SharedCode.Interfaces;
+using AndroidMVVM.Navigation;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace AndroidMVVM
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        public INavigationService navigationService = Ioc.Default.GetRequiredService<INavigationService>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            SearchCityWeatherFragment mainFragment = new SearchCityWeatherFragment();
-
-            var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
-            var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
-            fragmentTransaction.Add(Resource.Id.fragmentContainer, mainFragment, "SearchCityWeatherFragment");
-            fragmentTransaction.Commit();
+            navigationService.StartNavigation();
         }
 	}
 }
