@@ -67,6 +67,7 @@
     <Compile Include="AndroidApplication.cs" />
     <Compile Include="ViewModels\SearchCityViewModel.cs" />
     <Compile Include="Views\CityWeatherDetailFragment.cs" />
+    <Compile Include="Managers\NavigationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -133,6 +134,7 @@
     <Folder Include="Views\" />
     <Folder Include="Adapters\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />

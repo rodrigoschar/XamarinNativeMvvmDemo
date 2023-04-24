@@ -17,21 +17,13 @@ namespace SharedCode.ViewModels
 	public partial class SearchWeatherViewModel : ObservableObject
     {
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
-        public ObservableCollection<ListResponse> weatherCollection;
         public ObservableRangeCollection<ListResponse> weatherResponses;
         private ListResponse selectedResponse;
 
         public SearchWeatherViewModel(IClimateService service)
 		{
-            weatherCollection = new ObservableCollection<ListResponse>();
             weatherResponses = new ObservableRangeCollection<ListResponse>();
             Service = service;
-        }
-
-        public ObservableCollection<ListResponse> WeatherCollection
-        {
-            get { return weatherCollection ?? (weatherCollection = new ObservableCollection<ListResponse>()); }
-            set { weatherCollection = value; OnPropertyChanged(); }
         }
 
         public ListResponse SelectedResponse
@@ -46,22 +38,9 @@ namespace SharedCode.ViewModels
             var list = new List<ListResponse>();
             foreach (var item in data.Value)
             {
-                //WeatherCollection.Add(item);
                 list.Add(item);
             }
             weatherResponses.ReplaceRange(list);
-        }
-
-        public void RemoveItemList()
-        {
-            weatherResponses.RemoveAt(1);
-        }
-
-        public void SetSelectedCity(int index)
-        {
-            SelectedResponse = weatherCollection[index];
-            //WeakReferenceMessenger.Default.Send(new SelectedItemMessage(SelectedResponse));
-            WeakReferenceMessenger.Default.Send(new SelectedSrtItemMessage("It Works"));
         }
     }
 }

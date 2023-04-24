@@ -16,7 +16,7 @@ namespace iOSMVVM
 {
     public partial class ViewController : UIViewController
     {
-        public SearchWeatherViewModel viewModel;
+        public SearchCityViewModel viewModel;
         private List<ListResponse> weatherList = new List<ListResponse>();
 
         public ViewController (IntPtr handle) : base (handle)
@@ -26,7 +26,7 @@ namespace iOSMVVM
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-            viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
+            viewModel = Ioc.Default.GetRequiredService<SearchCityViewModel>();
 
             weatherTableView.RegisterNibForCellReuse(WeatherTableViewCell.Nib, WeatherTableViewCell.Key);
             weatherTableView.Source = new WeatherTableViewSource(this);
@@ -72,12 +72,8 @@ namespace iOSMVVM
 
             public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
             {
-                WeatherDetailViewController detailViewController = viewController.Storyboard.InstantiateViewController("WeatherDetailViewController") as WeatherDetailViewController;
-                if (detailViewController != null)
-                {
-                    detailViewController.selected = viewController.weatherList[indexPath.Row];
-                    viewController.NavigationController.PushViewController(detailViewController, true);
-                }
+                var selected = viewController.weatherList[indexPath.Row];
+                viewController.viewModel.GoToDetailView(selected, viewController);
                 tableView.DeselectRow(indexPath, true);
             }
 

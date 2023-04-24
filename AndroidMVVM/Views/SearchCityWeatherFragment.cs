@@ -33,7 +33,7 @@ namespace AndroidMVVM.Views
     public class SearchCityWeatherFragment : AndroidX.Fragment.App.Fragment
     {
         private TextInputEditText searchInput;
-        public SearchWeatherViewModel viewModel; 
+        public SearchCityViewModel viewModel; 
         private RecyclerView recyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private List<ListResponse> weatherList;
@@ -49,7 +49,7 @@ namespace AndroidMVVM.Views
         {
             Android.Views.View view = inflater.Inflate(Resource.Layout.fragment_search_city_weather, container, false);
 
-            viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
+            viewModel = Ioc.Default.GetRequiredService<SearchCityViewModel>();
 
             weatherList = new List<ListResponse>();
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.rv_weatherList);
@@ -67,7 +67,6 @@ namespace AndroidMVVM.Views
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
             searchButton.Click += SearchWeather;
 
-            //viewModel.weatherCollection.CollectionChanged += (s, e) => UpdatedCollectionProp();
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
@@ -80,10 +79,7 @@ namespace AndroidMVVM.Views
             {
                 progressDialog.Show();
                 viewModel.GetWeatherByCityName(city);
-            } else
-            {
-                viewModel.RemoveItemList();
-            }  
+            }
         }
 
         private void UpdatedCollectionProp()
@@ -98,17 +94,8 @@ namespace AndroidMVVM.Views
 
         private void GoToDetailItemClick(object sender, int e)
         {
-            CityWeatherDetailFragment detailFragment = new CityWeatherDetailFragment();
             ListResponse selected = weatherList[e];
-            detailFragment.selected = selected;
-
-            var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
-            var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
-            fragmentTransaction.Hide(this);
-            fragmentTransaction.Add(Resource.Id.fragmentContainer, detailFragment, "CityWeatherDetailFragment");
-            fragmentTransaction.AddToBackStack("CityWeatherDetailFragment");
-            fragmentTransaction.Commit();
-            //viewModel.SetSelectedCity(e);
+            viewModel.GoToDetailView(selected);
         }
     }
 }

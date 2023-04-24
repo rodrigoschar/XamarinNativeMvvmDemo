@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Java.Util.Logging;
 using AndroidMVVM.ViewModels;
 using SharedCode.ViewModels;
+using AndroidMVVM.Managers;
 
 namespace AndroidMVVM
 {
@@ -21,7 +22,9 @@ namespace AndroidMVVM
                 new ServiceCollection()
                 .AddSingleton<INetworkHandler, NetworkHandlerManager>()
                 .AddSingleton<IClimateService, ClimateService>()
+                .AddSingleton<INavigationService, NavigationService>()
                 .AddTransient<SearchWeatherViewModel>()
+                .AddTransient<SearchCityViewModel>()
                 .AddTransient<CityWeatherViewModel>()
                 .BuildServiceProvider());
         }
