@@ -7,7 +7,6 @@ using SharedCode.Managers;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Java.Util.Logging;
-using AndroidMVVM.ViewModels;
 using SharedCode.ViewModels;
 using AndroidMVVM.Navigation;
 

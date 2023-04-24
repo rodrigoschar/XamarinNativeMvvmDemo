@@ -16,7 +16,6 @@ namespace SharedCode.ViewModels
 	public partial class CityWeatherViewModel : ObservableObject
     {
         private ListResponse weatherResponse;
-        private string test;
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
         private byte[] imageBytes;
 
@@ -31,12 +30,6 @@ namespace SharedCode.ViewModels
             private set => SetProperty(ref weatherResponse, value);
         }
 
-        public string Test
-        {
-            get => test;
-            private set => SetProperty(ref test, value);
-        }
-
         public byte[] ImageBytes
         {
             get => imageBytes;
@@ -47,21 +40,6 @@ namespace SharedCode.ViewModels
         {
             WeatherResponse = data;
             setWeatherData(weatherResponse.Weather.FirstOrDefault().Icon);
-            /*WeakReferenceMessenger.Default.Register<SelectedItemMessage>(this, (r, m) =>
-            {
-                WeatherResponse = m.Value;
-            });*/
-            Console.WriteLine(1);
-            WeakReferenceMessenger.Default.Register<SelectedSrtItemMessage>(this, (r, m) =>
-            {
-                OnMessageReceived(m.Value);
-                Console.WriteLine(m.Value);
-            });
-        }
-
-        private void OnMessageReceived(string value)
-        {
-            Console.WriteLine($"New message received: {value}");
         }
 
         public async void setWeatherData(string iconId)

@@ -12,12 +12,10 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using CommunityToolkit.Mvvm.Messaging;
 using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
 using Xamarin.Essentials;
-using static Android.Renderscripts.Sampler;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace AndroidMVVM.Views

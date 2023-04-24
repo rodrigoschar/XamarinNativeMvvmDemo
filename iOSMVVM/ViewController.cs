@@ -3,7 +3,6 @@ using CoreAudioKit;
 using CoreGraphics;
 using Foundation;
 using iOSMVVM.Controllers;
-using iOSMVVM.ViewModels;
 using iOSMVVM.Views.Cells;
 using SharedCode.Interfaces;
 using SharedCode.Models;

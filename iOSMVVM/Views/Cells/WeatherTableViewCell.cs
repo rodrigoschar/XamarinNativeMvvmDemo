@@ -14,7 +14,7 @@ namespace iOSMVVM.Views.Cells
 
 		protected WeatherTableViewCell (IntPtr handle) : base (handle)
 		{
-			// Note: this .ctor should not contain any initialization logic.
+			
 		}
 
 		public ListResponse Data

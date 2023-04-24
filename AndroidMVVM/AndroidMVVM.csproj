@@ -65,7 +65,6 @@
     <Compile Include="Views\SearchCityWeatherFragment.cs" />
     <Compile Include="Adapters\WeatherAdapter.cs" />
     <Compile Include="AndroidApplication.cs" />
-    <Compile Include="ViewModels\SearchCityViewModel.cs" />
     <Compile Include="Views\CityWeatherDetailFragment.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
   </ItemGroup>
@@ -133,7 +132,6 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="Views\" />
     <Folder Include="Adapters\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Navigation\" />
   </ItemGroup>
   <ItemGroup>

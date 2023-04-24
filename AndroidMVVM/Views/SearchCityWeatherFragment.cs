@@ -15,7 +15,6 @@ using Android.Views;
 using Android.Widget;
 using AndroidMVVM.Adapters;
 using AndroidMVVM.Navigation;
-using AndroidMVVM.ViewModels;
 using AndroidX.AppCompat.App;
 using AndroidX.RecyclerView.Widget;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -68,7 +67,6 @@ namespace AndroidMVVM.Views
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
             searchButton.Click += SearchWeather;
 
-            //viewModel.weatherCollection.CollectionChanged += (s, e) => UpdatedCollectionProp();
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
@@ -81,10 +79,7 @@ namespace AndroidMVVM.Views
             {
                 progressDialog.Show();
                 viewModel.GetWeatherByCityName(city);
-            } else
-            {
-                viewModel.RemoveItemList();
-            }  
+            } 
         }
 
         private void UpdatedCollectionProp()

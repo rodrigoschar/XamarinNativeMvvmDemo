@@ -124,7 +124,6 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
-        <Folder Include="ViewModels\" />
         <Folder Include="Views\" />
         <Folder Include="Views\Cells\" />
         <Folder Include="Controllers\" />
@@ -148,7 +147,6 @@
         <Compile Include="ViewController.designer.cs">
             <DependentUpon>ViewController.cs</DependentUpon>
         </Compile>
-        <Compile Include="ViewModels\SearchCityViewModel.cs" />
         <Compile Include="Views\Cells\WeatherTableViewCell.cs" />
         <Compile Include="Views\Cells\WeatherTableViewCell.designer.cs">
           <DependentUpon>WeatherTableViewCell.cs</DependentUpon>
