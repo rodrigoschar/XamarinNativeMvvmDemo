@@ -7,11 +7,6 @@ using Xamarin.Essentials;
 
 namespace AndroidMVVM.Managers
 {
-    public interface INavigationService
-    {
-        void GoToWeatherDetail(ListResponse selectedItem);
-    }
-
     public class NavigationService : INavigationService
 	{
 		public NavigationService()

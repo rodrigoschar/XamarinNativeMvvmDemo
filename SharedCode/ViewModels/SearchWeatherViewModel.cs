@@ -17,13 +17,15 @@ namespace SharedCode.ViewModels
 	public partial class SearchWeatherViewModel : ObservableObject
     {
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
+        public readonly INavigationService NavigationService = Ioc.Default.GetRequiredService<INavigationService>();
         public ObservableRangeCollection<ListResponse> weatherResponses;
         private ListResponse selectedResponse;
 
-        public SearchWeatherViewModel(IClimateService service)
-		{
+        public SearchWeatherViewModel(IClimateService service, INavigationService navigationService)
+        {
             weatherResponses = new ObservableRangeCollection<ListResponse>();
             Service = service;
+            NavigationService = navigationService;
         }
 
         public ListResponse SelectedResponse
@@ -41,6 +43,11 @@ namespace SharedCode.ViewModels
                 list.Add(item);
             }
             weatherResponses.ReplaceRange(list);
+        }
+
+        public void GoToDetailView(ListResponse selected)
+        {
+            NavigationService.GoToWeatherDetail(selected);
         }
     }
 }

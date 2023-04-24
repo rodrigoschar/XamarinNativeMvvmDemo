@@ -18,8 +18,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cSL-OR-5Dp"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="rJi-WT-8nN"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="SWV-S3-bUh"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="dga-ev-LGv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-XD-FmK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -173,7 +173,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cSL-OR-5Dp"/>
+        <segue reference="SWV-S3-bUh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

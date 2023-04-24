@@ -33,9 +33,9 @@ namespace iOSMVVM.Controllers
             {
                 cityNameLabel.Text = "City Name: " + viewModel.WeatherResponse.Name;
                 weatherLabel.Text = "Weather: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
-                currentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
-                minTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
-                maxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+                currentTemp.Text = "Current Temp: " + SharedCode.Utils.Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+                minTemp.Text = "Min Temp: " + SharedCode.Utils.Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+                maxTemp.Text = "Max Temp: " + SharedCode.Utils.Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
             }
 
             if (viewModel.ImageBytes != null)
