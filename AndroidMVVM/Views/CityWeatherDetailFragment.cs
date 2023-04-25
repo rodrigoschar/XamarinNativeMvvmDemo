@@ -28,6 +28,10 @@ namespace AndroidMVVM.Views
         private TextView tvCurrentTemp;
         private TextView tvMinTemp;
         private TextView tvMaxTemp;
+        private TextView tvClouds;
+        private TextView tvWind;
+        private TextView tvLat;
+        private TextView tvLon;
         private CityWeatherViewModel viewModel;
         public ListResponse selected;
 
@@ -46,9 +50,13 @@ namespace AndroidMVVM.Views
             tvCityName = view.FindViewById<TextView>(Resource.Id.tv_dtCityName);
             tvWeather = view.FindViewById<TextView>(Resource.Id.tv_dtCurrentWeather);
             tvCurrentTemp = view.FindViewById<TextView>(Resource.Id.tv_dtCurrentTemp);
-            tvMinTemp = view.FindViewById<TextView>(Resource.Id.tv_drMinTemp);
+            tvMinTemp = view.FindViewById<TextView>(Resource.Id.tv_dtMinTemp);
             tvMaxTemp = view.FindViewById<TextView>(Resource.Id.tv_dtMaxTemp);
-            
+            tvClouds = view.FindViewById<TextView>(Resource.Id.tv_dtCloudsCoverage);
+            tvWind = view.FindViewById<TextView>(Resource.Id.tv_dtWindSpeed);
+            tvLat = view.FindViewById<TextView>(Resource.Id.tv_dtLat);
+            tvLon = view.FindViewById<TextView>(Resource.Id.tv_dtLon);
+
             viewModel.PropertyChanged += SetupView;
             if (selected != null)
                 viewModel.setData(selected);
@@ -60,11 +68,16 @@ namespace AndroidMVVM.Views
         {
             if (viewModel.WeatherResponse != null)
             {
-                tvCityName.Text = "City Name: " + viewModel.WeatherResponse.Name;
+                tvCityName.Text = "City: " + viewModel.WeatherResponse.Name + " , " + viewModel.WeatherResponse.Sys.Country;
                 tvWeather.Text = "Weather: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
                 tvCurrentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+                if (viewModel.WeatherResponse.Clouds != null)
+                    tvClouds.Text = "Clouds Coverage: " + viewModel.WeatherResponse.Clouds.All + "%";
+                tvWind.Text = "Wind Speed: " + viewModel.WeatherResponse.wind.Speed + " mph";
                 tvMinTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
                 tvMaxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+                tvLat.Text = "Latitude: " + viewModel.WeatherResponse.Coord.Lat;
+                tvLon.Text = "Longitude: " + viewModel.WeatherResponse.Coord.Lon;
             }
 
             if (viewModel.ImageBytes != null)

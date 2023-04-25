@@ -15,6 +15,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidMVVM.Adapters;
 using AndroidMVVM.Navigation;
+using AndroidMVVM.Util;
 using AndroidX.AppCompat.App;
 using AndroidX.RecyclerView.Widget;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -39,6 +40,7 @@ namespace AndroidMVVM.Views
         private List<ListResponse> weatherList;
         private WeatherAdapter adapter;
         private AndroidX.AppCompat.App.AlertDialog progressDialog;
+        private HideAndShowKeyboard hideAndShowKeyboard;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,6 +52,7 @@ namespace AndroidMVVM.Views
             Android.Views.View view = inflater.Inflate(Resource.Layout.fragment_search_city_weather, container, false);
 
             viewModel = Ioc.Default.GetRequiredService<SearchWeatherViewModel>();
+            hideAndShowKeyboard = Ioc.Default.GetRequiredService<HideAndShowKeyboard>();
 
             weatherList = new List<ListResponse>();
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.rv_weatherList);
@@ -94,6 +97,7 @@ namespace AndroidMVVM.Views
 
         private void GoToDetailItemClick(object sender, int e)
         {
+            hideAndShowKeyboard.hideSoftKeyboard(this.RequireActivity());
             ListResponse selected = weatherList[e];
             viewModel.GoToDetails(selected);
         }

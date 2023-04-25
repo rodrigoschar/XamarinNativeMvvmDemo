@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Java.Util.Logging;
 using SharedCode.ViewModels;
 using AndroidMVVM.Navigation;
+using AndroidMVVM.Util;
 
 namespace AndroidMVVM
 {
@@ -30,6 +31,7 @@ namespace AndroidMVVM
                 .AddSingleton<INavigationService, NavigationService>()
                 .AddTransient<SearchWeatherViewModel>()
                 .AddTransient<CityWeatherViewModel>()
+                .AddTransient<HideAndShowKeyboard>()
                 .BuildServiceProvider());
         }
     }

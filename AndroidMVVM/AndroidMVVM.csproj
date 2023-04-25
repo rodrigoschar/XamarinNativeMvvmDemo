@@ -67,6 +67,7 @@
     <Compile Include="AndroidApplication.cs" />
     <Compile Include="Views\CityWeatherDetailFragment.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
+    <Compile Include="Util\HideAndShowKeyboard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -133,6 +134,7 @@
     <Folder Include="Views\" />
     <Folder Include="Adapters\" />
     <Folder Include="Navigation\" />
+    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
