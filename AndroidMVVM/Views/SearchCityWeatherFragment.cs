@@ -27,7 +27,6 @@ using SharedCode.Utils;
 using SharedCode.ViewModels;
 using Xamarin.Essentials;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
-using static Java.Util.Jar.Attributes;
 
 namespace AndroidMVVM.Views
 {
@@ -70,6 +69,7 @@ namespace AndroidMVVM.Views
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
             searchButton.Click += SearchWeather;
 
+            viewModel.PropertyChanged += PropertiesChanged;
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
@@ -83,6 +83,16 @@ namespace AndroidMVVM.Views
                 progressDialog.Show();
                 viewModel.GetWeatherByCityName(city);
             } 
+        }
+
+        private void PropertiesChanged(object sender, EventArgs eventArgs)
+        {
+            hideAndShowKeyboard.hideSoftKeyboard(this.RequireActivity());
+            if (viewModel.ErrorMessage != null)
+            {
+                progressDialog.Dismiss();
+                Toast.MakeText(Application.Context, viewModel.ErrorMessage, ToastLength.Short).Show();
+            }
         }
 
         private void UpdatedCollectionProp()

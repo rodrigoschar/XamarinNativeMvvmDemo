@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:text="Santa Cruz"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@android:color/black"
         android:textAlignment="textStart"
         android:paddingStart="8dp" />
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:text=""
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@android:color/black"
         android:textAlignment="textStart"
         android:paddingStart="8dp" />
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:text=""
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@android:color/black"
         android:textAlignment="textStart"
         android:paddingStart="8dp" />
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:text=""
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@android:color/black"
         android:textAlignment="textStart"
         android:paddingStart="8dp" />
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:text="Santa Cruz"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@android:color/black"
         android:textAlignment="textStart"
         android:paddingStart="8dp" />
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 		    android:text="24"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:textAlignment="textStart"
             android:paddingStart="8dp" />
@@ -91,47 +91,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 		    android:text="30"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:textAlignment="textEnd"
             android:paddingEnd="8dp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
+    <TextView
             android:id="@+id/tv_dtLat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 		    android:text="24"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:textAlignment="textStart"
             android:paddingStart="8dp" />
 
-        <View
-            android:layout_width="wrap_content"
-	        android:layout_height="1dp"
-	        android:layout_weight="1" />
-
-        <TextView
+    <TextView
             android:id="@+id/tv_dtLon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 		    android:text="30"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:textAlignment="textEnd"
-            android:paddingEnd="8dp" />
-
-    </LinearLayout>
+            android:textAlignment="textStart"
+            android:paddingStart="8dp" />
 
 
 </LinearLayout>

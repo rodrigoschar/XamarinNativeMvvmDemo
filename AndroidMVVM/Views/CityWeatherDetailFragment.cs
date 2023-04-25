@@ -68,16 +68,16 @@ namespace AndroidMVVM.Views
         {
             if (viewModel.WeatherResponse != null)
             {
-                tvCityName.Text = "City: " + viewModel.WeatherResponse.Name + " , " + viewModel.WeatherResponse.Sys.Country;
-                tvWeather.Text = "Weather: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
-                tvCurrentTemp.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+                tvCityName.Text = "CITY: " + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
+                tvWeather.Text = "WEATHER: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
+                tvCurrentTemp.Text = "CURRENT TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
                 if (viewModel.WeatherResponse.Clouds != null)
-                    tvClouds.Text = "Clouds Coverage: " + viewModel.WeatherResponse.Clouds.All + "%";
-                tvWind.Text = "Wind Speed: " + viewModel.WeatherResponse.wind.Speed + " mph";
-                tvMinTemp.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
-                tvMaxTemp.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
-                tvLat.Text = "Latitude: " + viewModel.WeatherResponse.Coord.Lat;
-                tvLon.Text = "Longitude: " + viewModel.WeatherResponse.Coord.Lon;
+                    tvClouds.Text = "CLOUDS COVERAGE: " + viewModel.WeatherResponse.Clouds.All + "%";
+                tvWind.Text = "WIND SPEED: " + viewModel.WeatherResponse.wind.Speed + " mph";
+                tvMinTemp.Text = "MIN TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+                tvMaxTemp.Text = "MAX TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+                tvLat.Text = "LATITUDE: " + viewModel.WeatherResponse.Coord.Lat;
+                tvLon.Text = "LONGITUDE: " + viewModel.WeatherResponse.Coord.Lon;
             }
 
             if (viewModel.ImageBytes != null)

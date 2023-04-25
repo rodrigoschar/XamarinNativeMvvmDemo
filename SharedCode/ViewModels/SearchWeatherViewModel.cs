@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SharedCode.Utils;
 using System.Linq;
-using System.Windows.Input;
 
 namespace SharedCode.ViewModels
 {
@@ -15,6 +14,7 @@ namespace SharedCode.ViewModels
     {
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
         public ObservableRangeCollection<ListResponse> weatherResponses;
+        private string errorMessage;
 
         private INavigationService navigationService;
 
@@ -25,15 +25,37 @@ namespace SharedCode.ViewModels
             Service = service;
         }
 
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set => SetProperty(ref errorMessage, value);
+        }
+
         public async void GetWeatherByCityName(string cityName)
         {
             var data = await Service.GetWeatherByCitiName(cityName);
-            var list = new List<ListResponse>();
-            foreach (var item in data.Value)
+            if (data.Success)
             {
-                list.Add(item);
+                if (data.Value.Count == 0)
+                {
+                    weatherResponses.Clear();
+                    ErrorMessage = "Error " + cityName + " is not a valid city name";
+                }
+                else
+                {
+                    var list = new List<ListResponse>();
+                    foreach (var item in data.Value)
+                    {
+                        list.Add(item);
+                    }
+                    weatherResponses.ReplaceRange(list);
+                }
             }
-            weatherResponses.ReplaceRange(list);
+            else
+            {
+                weatherResponses.Clear();
+                ErrorMessage = data.Error;
+            } 
         }
 
         public void GoToDetails(ListResponse selected)

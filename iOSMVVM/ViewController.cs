@@ -2,6 +2,7 @@
 using CoreAudioKit;
 using CoreGraphics;
 using Foundation;
+using GlobalToast;
 using iOSMVVM.Controllers;
 using iOSMVVM.Views.Cells;
 using SharedCode.Interfaces;
@@ -33,12 +34,24 @@ namespace iOSMVVM
             searchWeatherSearchBar.Delegate = new WeatherViewControllerSearchBarDelegate(this);
             loadingActivityIndicator.Hidden = true;
 
+            viewModel.PropertyChanged += PropertiesChanged;
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
         }
 
         public override void DidReceiveMemoryWarning ()
         {
             base.DidReceiveMemoryWarning ();
+        }
+
+        private void PropertiesChanged(object sender, EventArgs eventArgs)
+        {
+            UIApplication.SharedApplication.KeyWindow.EndEditing(true);
+            if (viewModel.ErrorMessage != null)
+            {
+                loadingActivityIndicator.StopAnimating();
+                loadingActivityIndicator.Hidden = true;
+                Toast.MakeToast(viewModel.ErrorMessage).Show();
+            }
         }
 
         private void UpdatedCollectionProp()

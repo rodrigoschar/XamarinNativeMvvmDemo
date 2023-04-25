@@ -16,7 +16,16 @@ namespace iOSMVVM.Controllers
 		UIKit.UILabel cityNameLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel cloudsCoverageLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel currentTemp { get; set; }
+
+		[Outlet]
+		UIKit.UILabel latLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lonLabel { get; set; }
 
 		[Outlet]
 		UIKit.UILabel maxTemp { get; set; }
@@ -29,22 +38,15 @@ namespace iOSMVVM.Controllers
 
 		[Outlet]
 		UIKit.UILabel weatherLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel windSpeedLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (weatherImageView != null) {
-				weatherImageView.Dispose ();
-				weatherImageView = null;
-			}
-
 			if (cityNameLabel != null) {
 				cityNameLabel.Dispose ();
 				cityNameLabel = null;
-			}
-
-			if (weatherLabel != null) {
-				weatherLabel.Dispose ();
-				weatherLabel = null;
 			}
 
 			if (currentTemp != null) {
@@ -52,14 +54,44 @@ namespace iOSMVVM.Controllers
 				currentTemp = null;
 			}
 
+			if (maxTemp != null) {
+				maxTemp.Dispose ();
+				maxTemp = null;
+			}
+
 			if (minTemp != null) {
 				minTemp.Dispose ();
 				minTemp = null;
 			}
 
-			if (maxTemp != null) {
-				maxTemp.Dispose ();
-				maxTemp = null;
+			if (weatherImageView != null) {
+				weatherImageView.Dispose ();
+				weatherImageView = null;
+			}
+
+			if (weatherLabel != null) {
+				weatherLabel.Dispose ();
+				weatherLabel = null;
+			}
+
+			if (cloudsCoverageLabel != null) {
+				cloudsCoverageLabel.Dispose ();
+				cloudsCoverageLabel = null;
+			}
+
+			if (windSpeedLabel != null) {
+				windSpeedLabel.Dispose ();
+				windSpeedLabel = null;
+			}
+
+			if (latLabel != null) {
+				latLabel.Dispose ();
+				latLabel = null;
+			}
+
+			if (lonLabel != null) {
+				lonLabel.Dispose ();
+				lonLabel = null;
 			}
 		}
 	}
