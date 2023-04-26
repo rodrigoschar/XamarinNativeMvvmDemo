@@ -62,32 +62,22 @@ namespace AndroidMVVM.Views
 
             var binding = new EBinding
             {
-                BindFlag.None,
-                () => UpdateViewDetails(viewModel.WeatherResponse),
-                () => UpdateImage(viewModel.ImageBytes)
-                //(() => tvCityName.Text == (viewModel.WeatherResponse.Name ?? "No City name"))
-                //() => (tvCityName.Text ?? "TEXTO DE PRUEBA") == (viewModel.WeatherResponse.Name ?? "NO TEXT"),
-                //() => (tvCityName.Text ?? "TEXTO DE PRUEBA") == viewModel.WeatherResponse.Name,
-                //() => (tvWeather.Text ?? "TEXTO DE PRUEBA WHEATHER") == (viewModel.WeatherResponse.Weather.FirstOrDefault().Main ?? "TEST WHEATHER"),
-                //() => viewModel.WeatherResponse.Weather.FirstOrDefault().Main == tvWeather.Text,
-                //() => viewModel.WeatherResponse.Main.Temp.ToString() == tvCurrentTemp.Text,
-                //() => viewModel.WeatherResponse.Clouds.All.ToString() == tvClouds.Text,
-                //() => viewModel.WeatherResponse.wind.Speed.ToString() == tvWind.Text,
-                //() => viewModel.WeatherResponse.Main.TempMin.ToString() == tvMinTemp.Text,
-                //() => viewModel.WeatherResponse.Main.TempMax.ToString() == tvMaxTemp.Text,
-                //() => viewModel.WeatherResponse.Coord.Lat.ToString() == tvLat.Text,
-                //() => viewModel.WeatherResponse.Coord.Lon.ToString() == tvLon.Text,
+                BindFlag.TwoWay,
+                //() => UpdateViewDetails(viewModel.WeatherResponse),
+                //() => UpdateWeatherName(viewModel.WeatherResponse.Name),
+                () => viewModel.WeatherResponse.Name == tvCityName.Text,
+                () => UpdateImage(viewModel.ImageBytes),
             };
-            //var binding = new EBinding
-            //{
-            //    BindFlag.None,
-            //    () => (tvCityName.Text ?? "TEXTO DE PRUEBA") == (viewModel.WeatherResponse.Name ?? "No City name"),
-            //};
 
             if (selected != null)
                 viewModel.setData(selected);
             
             return view;
+        }
+
+        private void UpdateWeatherName(string name)
+        {
+            tvCityName.Text = viewModel.WeatherResponse != null && viewModel.WeatherResponse.Name != null ? viewModel.WeatherResponse?.Name : "No City Name";
         }
 
         //private void SetupView(object sender, EventArgs eventArgs)

@@ -74,26 +74,37 @@ namespace AndroidMVVM.Views
             {
                 BindFlag.None,
                 (searchButton, nameof(searchButton.Click), () => viewModel.GetWeatherByCityName(searchInput.Text)),
-                //(adapter, nameof(adapter.ItemClick), () => GoToDetailItemClick(null, 2 )),
+                //(() => UpdatedCollection(viewModel.weatherResponses))
+                () => OnErrorMessageChanged(viewModel.ErrorMessage)
             };
 
-            viewModel.PropertyChanged += PropertiesChanged;
+            //viewModel.PropertyChanged += PropertiesChanged;
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
 
             return view;
         }
 
-        private void SearchWeather(object sender, EventArgs eventArgs)
-        {
-            var city = searchInput.Text;
-            if (!string.IsNullOrEmpty(city))
-            {
-                progressDialog.Show();
-                viewModel.GetWeatherByCityName(city);
-            } 
-        }
+        //private void SearchWeather(object sender, EventArgs eventArgs)
+        //{
+        //    var city = searchInput.Text;
+        //    if (!string.IsNullOrEmpty(city))
+        //    {
+        //        progressDialog.Show();
+        //        viewModel.GetWeatherByCityName(city);
+        //    } 
+        //}
 
-        private void PropertiesChanged(object sender, EventArgs eventArgs)
+        //private void PropertiesChanged(object sender, EventArgs eventArgs)
+        //{
+        //    hideAndShowKeyboard.hideSoftKeyboard(this.RequireActivity());
+        //    if (viewModel.ErrorMessage != null)
+        //    {
+        //        progressDialog.Dismiss();
+        //        Toast.MakeText(Application.Context, viewModel.ErrorMessage, ToastLength.Short).Show();
+        //    }
+        //}
+
+        private void OnErrorMessageChanged(string errorMessage)
         {
             hideAndShowKeyboard.hideSoftKeyboard(this.RequireActivity());
             if (viewModel.ErrorMessage != null)
@@ -112,6 +123,16 @@ namespace AndroidMVVM.Views
                 progressDialog.Dismiss();
             }
         }
+
+        //private void UpdatedCollection(ObservableRangeCollection<ListResponse> list)
+        //{
+        //    if (viewModel.weatherResponses != null)
+        //    {
+        //        weatherList = viewModel.weatherResponses.ToList();
+        //        (recyclerView.GetAdapter() as WeatherAdapter).UpdateList(weatherList);
+        //        progressDialog.Dismiss();
+        //    }
+        //}
 
         private void GoToDetailItemClick(object sender, int e)
         {

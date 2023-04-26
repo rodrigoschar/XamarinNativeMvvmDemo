@@ -22,6 +22,7 @@ namespace SharedCode.ViewModels
         public CityWeatherViewModel(IClimateService service)
 		{
             Service = service;
+            WeatherResponse = new ListResponse();
         }
 
         public ListResponse WeatherResponse
