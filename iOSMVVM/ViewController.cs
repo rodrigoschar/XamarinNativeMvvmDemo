@@ -4,6 +4,7 @@ using CoreGraphics;
 using Foundation;
 using GlobalToast;
 using iOSMVVM.Controllers;
+using iOSMVVM.Util;
 using iOSMVVM.Views.Cells;
 using SharedCode.Interfaces;
 using SharedCode.Models;
@@ -34,6 +35,9 @@ namespace iOSMVVM
             searchWeatherSearchBar.Delegate = new WeatherViewControllerSearchBarDelegate(this);
             loadingActivityIndicator.Hidden = true;
 
+            searchWeatherSearchBar.Placeholder = Constants.GetLocalizable(Constants.SearchLocalizable);
+
+            var lang = NSBundle.MainBundle.PreferredLocalizations[0];
             viewModel.PropertyChanged += PropertiesChanged;
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();
         }

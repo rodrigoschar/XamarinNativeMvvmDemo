@@ -32,16 +32,16 @@ namespace iOSMVVM.Controllers
         {
             if (viewModel.WeatherResponse != null)
             {
-                cityNameLabel.Text = "CITY: " + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
-                weatherLabel.Text = "WEATHER: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
+                cityNameLabel.Text = Util.Constants.GetLocalizable(Util.Constants.CityLocalizable) + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
+                weatherLabel.Text = Util.Constants.GetLocalizable(Util.Constants.WeatherLocalizable) + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
                 if (viewModel.WeatherResponse.Clouds != null)
-                    cloudsCoverageLabel.Text = "CLOUDS COVERAGE: " + viewModel.WeatherResponse.Clouds.All + "%";
-                windSpeedLabel.Text = "WIND SPEED: " + viewModel.WeatherResponse.wind.Speed + " mph";
-                currentTemp.Text = "CURRENT TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
-                minTemp.Text = "MIN TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
-                maxTemp.Text = "MAX TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
-                latLabel.Text = "LATITUDE: " + viewModel.WeatherResponse.Coord.Lat;
-                lonLabel.Text = "LONGITUDE: " + viewModel.WeatherResponse.Coord.Lon;
+                    cloudsCoverageLabel.Text = Util.Constants.GetLocalizable(Util.Constants.CloudsCoverageLocalizable) + viewModel.WeatherResponse.Clouds.All + "%";
+                windSpeedLabel.Text = Util.Constants.GetLocalizable(Util.Constants.WindSpeedLocalizable) + viewModel.WeatherResponse.wind.Speed + " mph";
+                currentTemp.Text = Util.Constants.GetLocalizable(Util.Constants.CurrentTempLocalizable) + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+                minTemp.Text = Util.Constants.GetLocalizable(Util.Constants.MinTempLocalizable) + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+                maxTemp.Text = Util.Constants.GetLocalizable(Util.Constants.MaxTempLocalizable) + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+                latLabel.Text = Util.Constants.GetLocalizable(Util.Constants.LatitudeLocalizable) + viewModel.WeatherResponse.Coord.Lat;
+                lonLabel.Text = Util.Constants.GetLocalizable(Util.Constants.LongitudLocalizable) + viewModel.WeatherResponse.Coord.Lon;
             }
 
             if (viewModel.ImageBytes != null)

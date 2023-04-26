@@ -3,6 +3,7 @@ using System.Linq;
 using Foundation;
 using SharedCode.Models;
 using SharedCode.Utils;
+using iOSMVVM.Util;
 using UIKit;
 
 namespace iOSMVVM.Views.Cells
@@ -24,12 +25,12 @@ namespace iOSMVVM.Views.Cells
 			{
 				containerView.Layer.CornerRadius = 10;
 				containerView.BackgroundColor = UIColor.FromName("backgroundColor").ColorWithAlpha(0.6f);
-                cityNameLabel.Text = "City Name: " + value.Name;
-                countryLabel.Text = "Country: " + value.Sys.Country;
-                weatherLabel.Text = "Weather: " + value.Weather.FirstOrDefault().Main + ", " + value.Weather.FirstOrDefault().Description;
-                currentTempLabel.Text = "Current Temp: " + Utils.ConvertKelvinToCelsius(value.Main.Temp) + "ºC";
-                minTempLabel.Text = "Min Temp: " + Utils.ConvertKelvinToCelsius(value.Main.TempMin) + "ºC";
-                maxTempLabel.Text = "Max Temp: " + Utils.ConvertKelvinToCelsius(value.Main.TempMax) + "ºC";
+                cityNameLabel.Text = Util.Constants.GetLocalizable(Util.Constants.CityNameLocalizable) + value.Name;
+                countryLabel.Text = Util.Constants.GetLocalizable(Util.Constants.CountryLozalizable) + value.Sys.Country;
+                weatherLabel.Text = Util.Constants.GetLocalizable(Util.Constants.WeatherLocalizable) + value.Weather.FirstOrDefault().Main + ", " + value.Weather.FirstOrDefault().Description;
+                currentTempLabel.Text = Util.Constants.GetLocalizable(Util.Constants.CurrentTempLocalizable) + Utils.ConvertKelvinToCelsius(value.Main.Temp) + "ºC";
+                minTempLabel.Text = Util.Constants.GetLocalizable(Util.Constants.MinTempLocalizable) + Utils.ConvertKelvinToCelsius(value.Main.TempMin) + "ºC";
+                maxTempLabel.Text = Util.Constants.GetLocalizable(Util.Constants.MaxTempLocalizable) + Utils.ConvertKelvinToCelsius(value.Main.TempMax) + "ºC";
             }
 		}
 	}

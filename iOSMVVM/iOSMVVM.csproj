@@ -131,6 +131,9 @@
         <Folder Include="Views\Cells\" />
         <Folder Include="Controllers\" />
         <Folder Include="Navigation\" />
+        <Folder Include="Resources\en.lproj\" />
+        <Folder Include="Resources\es.lproj\" />
+        <Folder Include="Util\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -159,12 +162,17 @@
           <DependentUpon>WeatherDetailViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Navigation\NavigationService.cs" />
+        <Compile Include="Util\Constants.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\SharedCode\SharedCode.csproj">
         <Project>{F3DEA32C-3B46-4299-9E31-A8EC666A02B0}</Project>
         <Name>SharedCode</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+      <BundleResource Include="Resources\es.lproj\Localizable.strings" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

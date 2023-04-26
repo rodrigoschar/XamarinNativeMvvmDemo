@@ -1,0 +1,12 @@
+﻿"Search" = "Buscar por nombre de ciudad";
+"CityName" = "Nombre de Ciudad: ";
+"Country" = "Pais: ";
+"City" = "Ciudad: ";
+"Weather" = "Clima: ";
+"CloudsCoverage" = "Covertura de Nubes: ";
+"WindSpeed" = "Velocidad del Viento: ";
+"CurrentTemp" = "Temperatura Actual: ";
+"MinTemp" = "TJMin: ";
+"MaxTemp" = "TJMax: ";
+"Latitude" = "Latitud: ";
+"Longitud" = "Longitud: ";

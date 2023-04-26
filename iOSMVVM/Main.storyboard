@@ -41,7 +41,7 @@
                                 <rect key="frame" x="36" y="179" width="321" height="619"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search By City Name" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5d-5m-Xat">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5d-5m-Xat">
                                 <rect key="frame" x="20" y="103" width="353" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
