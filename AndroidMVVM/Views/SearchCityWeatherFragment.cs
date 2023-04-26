@@ -20,6 +20,7 @@ using AndroidX.AppCompat.App;
 using AndroidX.RecyclerView.Widget;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using EBind;
 using Google.Android.Material.TextField;
 using SharedCode.Interfaces;
 using SharedCode.Models;
@@ -67,7 +68,14 @@ namespace AndroidMVVM.Views
 
             searchInput = view.FindViewById<TextInputEditText>(Resource.Id.edt_searchWeather);
             Button searchButton = view.FindViewById<Button>(Resource.Id.btn_search);
-            searchButton.Click += SearchWeather;
+            //searchButton.Click += SearchWeather;
+
+            var binding = new EBinding
+            {
+                BindFlag.None,
+                (searchButton, nameof(searchButton.Click), () => viewModel.GetWeatherByCityName(searchInput.Text)),
+                //(adapter, nameof(adapter.ItemClick), () => GoToDetailItemClick(null, 2 )),
+            };
 
             viewModel.PropertyChanged += PropertiesChanged;
             viewModel.weatherResponses.CollectionChanged += (s, e) => UpdatedCollectionProp();

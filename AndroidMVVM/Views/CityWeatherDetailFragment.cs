@@ -12,6 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using EBind;
 using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
@@ -57,34 +58,81 @@ namespace AndroidMVVM.Views
             tvLat = view.FindViewById<TextView>(Resource.Id.tv_dtLat);
             tvLon = view.FindViewById<TextView>(Resource.Id.tv_dtLon);
 
-            viewModel.PropertyChanged += SetupView;
+            //viewModel.PropertyChanged += SetupView;
+
+            var binding = new EBinding
+            {
+                BindFlag.None,
+                () => UpdateViewDetails(viewModel.WeatherResponse),
+                () => UpdateImage(viewModel.ImageBytes)
+                //(() => tvCityName.Text == (viewModel.WeatherResponse.Name ?? "No City name"))
+                //() => (tvCityName.Text ?? "TEXTO DE PRUEBA") == (viewModel.WeatherResponse.Name ?? "NO TEXT"),
+                //() => (tvCityName.Text ?? "TEXTO DE PRUEBA") == viewModel.WeatherResponse.Name,
+                //() => (tvWeather.Text ?? "TEXTO DE PRUEBA WHEATHER") == (viewModel.WeatherResponse.Weather.FirstOrDefault().Main ?? "TEST WHEATHER"),
+                //() => viewModel.WeatherResponse.Weather.FirstOrDefault().Main == tvWeather.Text,
+                //() => viewModel.WeatherResponse.Main.Temp.ToString() == tvCurrentTemp.Text,
+                //() => viewModel.WeatherResponse.Clouds.All.ToString() == tvClouds.Text,
+                //() => viewModel.WeatherResponse.wind.Speed.ToString() == tvWind.Text,
+                //() => viewModel.WeatherResponse.Main.TempMin.ToString() == tvMinTemp.Text,
+                //() => viewModel.WeatherResponse.Main.TempMax.ToString() == tvMaxTemp.Text,
+                //() => viewModel.WeatherResponse.Coord.Lat.ToString() == tvLat.Text,
+                //() => viewModel.WeatherResponse.Coord.Lon.ToString() == tvLon.Text,
+            };
+            //var binding = new EBinding
+            //{
+            //    BindFlag.None,
+            //    () => (tvCityName.Text ?? "TEXTO DE PRUEBA") == (viewModel.WeatherResponse.Name ?? "No City name"),
+            //};
+
             if (selected != null)
                 viewModel.setData(selected);
             
             return view;
         }
 
-        private void SetupView(object sender, EventArgs eventArgs)
-        {
-            if (viewModel.WeatherResponse != null)
-            {
-                tvCityName.Text = "CITY: " + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
-                tvWeather.Text = "WEATHER: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
-                tvCurrentTemp.Text = "CURRENT TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
-                if (viewModel.WeatherResponse.Clouds != null)
-                    tvClouds.Text = "CLOUDS COVERAGE: " + viewModel.WeatherResponse.Clouds.All + "%";
-                tvWind.Text = "WIND SPEED: " + viewModel.WeatherResponse.wind.Speed + " mph";
-                tvMinTemp.Text = "MIN TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
-                tvMaxTemp.Text = "MAX TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
-                tvLat.Text = "LATITUDE: " + viewModel.WeatherResponse.Coord.Lat;
-                tvLon.Text = "LONGITUDE: " + viewModel.WeatherResponse.Coord.Lon;
-            }
+        //private void SetupView(object sender, EventArgs eventArgs)
+        //{
+        //    if (viewModel.WeatherResponse != null)
+        //    {
+        //        tvCityName.Text = "CITY: " + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
+        //        tvWeather.Text = "WEATHER: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
+        //        tvCurrentTemp.Text = "CURRENT TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+        //        if (viewModel.WeatherResponse.Clouds != null)
+        //            tvClouds.Text = "CLOUDS COVERAGE: " + viewModel.WeatherResponse.Clouds.All + "%";
+        //        tvWind.Text = "WIND SPEED: " + viewModel.WeatherResponse.wind.Speed + " mph";
+        //        tvMinTemp.Text = "MIN TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+        //        tvMaxTemp.Text = "MAX TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+        //        tvLat.Text = "LATITUDE: " + viewModel.WeatherResponse.Coord.Lat;
+        //        tvLon.Text = "LONGITUDE: " + viewModel.WeatherResponse.Coord.Lon;
+        //    }
 
-            if (viewModel.ImageBytes != null)
-            {
-                var bitmap = BitmapFactory.DecodeByteArray(viewModel.ImageBytes, 0, viewModel.ImageBytes.Length);
-                ivClimate.SetImageBitmap(bitmap);
-            }
+        //    if (viewModel.ImageBytes != null)
+        //    {
+        //        var bitmap = BitmapFactory.DecodeByteArray(viewModel.ImageBytes, 0, viewModel.ImageBytes.Length);
+        //        ivClimate.SetImageBitmap(bitmap);
+        //    }
+        //}
+
+        private void UpdateViewDetails(ListResponse city)
+        {
+            if (city == null) return;
+            tvCityName.Text = "CITY: " + viewModel.WeatherResponse.Name + ", " + viewModel.WeatherResponse.Sys.Country;
+            tvWeather.Text = "WEATHER: " + viewModel.WeatherResponse.Weather.FirstOrDefault().Main + ", " + viewModel.WeatherResponse.Weather.FirstOrDefault().Description;
+            tvCurrentTemp.Text = "CURRENT TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.Temp) + "ºC";
+            if (viewModel.WeatherResponse.Clouds != null)
+                tvClouds.Text = "CLOUDS COVERAGE: " + viewModel.WeatherResponse.Clouds.All + "%";
+            tvWind.Text = "WIND SPEED: " + viewModel.WeatherResponse.wind.Speed + " mph";
+            tvMinTemp.Text = "MIN TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMin) + "ºC";
+            tvMaxTemp.Text = "MAX TEMP: " + Utils.ConvertKelvinToCelsius(viewModel.WeatherResponse.Main.TempMax) + "ºC";
+            tvLat.Text = "LATITUDE: " + viewModel.WeatherResponse.Coord.Lat;
+            tvLon.Text = "LONGITUDE: " + viewModel.WeatherResponse.Coord.Lon;
+        }
+
+        private void UpdateImage(byte[] image)
+        {
+            if (viewModel.ImageBytes == null) return;
+            var bitmap = BitmapFactory.DecodeByteArray(viewModel.ImageBytes, 0, viewModel.ImageBytes.Length);
+            ivClimate.SetImageBitmap(bitmap);
         }
     }
 }
