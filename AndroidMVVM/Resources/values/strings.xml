@@ -4,5 +4,6 @@
     <string name="search_city">Search By City Name</string>
     <string name="search">Search</string>
     <string name="progress_bar">Loading...</string>
+    <string name="open_maps">Open in Maps</string>
 </resources>
 

@@ -5,22 +5,27 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Java.Util;
 using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
 using Xamarin.Essentials;
+using static Android.Service.Voice.VoiceInteractionSession;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace AndroidMVVM.Views
 {
-    public class CityWeatherDetailFragment :AndroidX.Fragment.App.Fragment
+    public class CityWeatherDetailFragment :AndroidX.Fragment.App.Fragment, IOnMapReadyCallback
     {
         private ImageView ivClimate;
         private TextView tvCityName;
@@ -85,6 +90,36 @@ namespace AndroidMVVM.Views
                 var bitmap = BitmapFactory.DecodeByteArray(viewModel.ImageBytes, 0, viewModel.ImageBytes.Length);
                 ivClimate.SetImageBitmap(bitmap);
             }
+
+            GoogleMapOptions mapOptions = new GoogleMapOptions()
+                .InvokeMapType(GoogleMap.MapTypeNormal)
+                .InvokeZoomControlsEnabled(true);
+
+            var mapFrag = SupportMapFragment.NewInstance(mapOptions);
+            var appCompatActivity = Platform.CurrentActivity as AppCompatActivity;
+            var fragmentTransaction = appCompatActivity?.SupportFragmentManager.BeginTransaction();
+            fragmentTransaction.Add(Resource.Id.fragment_baseDetail, mapFrag, "map_fragment");
+            fragmentTransaction.Commit();
+            mapFrag.GetMapAsync(this);
+        }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            LatLng location = new LatLng(viewModel.WeatherResponse.Coord.Lat, viewModel.WeatherResponse.Coord.Lon);
+
+            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            builder.Target(location);
+            builder.Zoom(18);
+
+            MarkerOptions markerOpt = new MarkerOptions();
+            markerOpt.SetPosition(location);
+            markerOpt.SetTitle(viewModel.WeatherResponse.Name);
+
+            googleMap.AddMarker(markerOpt);
+
+            CameraPosition cameraPosition = builder.Build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
+            googleMap.MoveCamera(cameraUpdate);
         }
     }
 }
