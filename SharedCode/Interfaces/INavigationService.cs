@@ -8,6 +8,7 @@ namespace SharedCode.Interfaces
 	{
 		void StartNavigation();
 		void ShowDetails(ListResponse selected);
-	}
+		void ShowGoogleMpas(ListResponse selected);
+    }
 }
 

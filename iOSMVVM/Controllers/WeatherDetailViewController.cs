@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CoreGraphics;
 using Foundation;
+using Google.Maps;
 using SharedCode.Interfaces;
 using SharedCode.Models;
 using SharedCode.Utils;
@@ -26,6 +28,8 @@ namespace iOSMVVM.Controllers
             viewModel.PropertyChanged += SetupView;
             if (selected != null)
                 viewModel.setData(selected);
+
+            gotoMapsButton.TouchUpInside += GoToGoogleMapsClick;
         }
 
         private void SetupView(object sender, EventArgs eventArgs)
@@ -48,6 +52,11 @@ namespace iOSMVVM.Controllers
             {
                 weatherImageView.Image = UIImage.LoadFromData(NSData.FromArray(viewModel.ImageBytes));
             }
+        }
+
+        private void GoToGoogleMapsClick(object sender, EventArgs e)
+        {
+            viewModel.GoToGoogleMaps(selected);
         }
 
         public override void DidReceiveMemoryWarning()

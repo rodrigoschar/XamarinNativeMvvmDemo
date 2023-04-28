@@ -22,10 +22,16 @@ namespace iOSMVVM.Controllers
 		UIKit.UILabel currentTemp { get; set; }
 
 		[Outlet]
+		UIKit.UIButton gotoMapsButton { get; set; }
+
+		[Outlet]
 		UIKit.UILabel latLabel { get; set; }
 
 		[Outlet]
 		UIKit.UILabel lonLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIView mapView { get; set; }
 
 		[Outlet]
 		UIKit.UILabel maxTemp { get; set; }
@@ -49,9 +55,29 @@ namespace iOSMVVM.Controllers
 				cityNameLabel = null;
 			}
 
+			if (cloudsCoverageLabel != null) {
+				cloudsCoverageLabel.Dispose ();
+				cloudsCoverageLabel = null;
+			}
+
 			if (currentTemp != null) {
 				currentTemp.Dispose ();
 				currentTemp = null;
+			}
+
+			if (latLabel != null) {
+				latLabel.Dispose ();
+				latLabel = null;
+			}
+
+			if (lonLabel != null) {
+				lonLabel.Dispose ();
+				lonLabel = null;
+			}
+
+			if (mapView != null) {
+				mapView.Dispose ();
+				mapView = null;
 			}
 
 			if (maxTemp != null) {
@@ -74,24 +100,14 @@ namespace iOSMVVM.Controllers
 				weatherLabel = null;
 			}
 
-			if (cloudsCoverageLabel != null) {
-				cloudsCoverageLabel.Dispose ();
-				cloudsCoverageLabel = null;
-			}
-
 			if (windSpeedLabel != null) {
 				windSpeedLabel.Dispose ();
 				windSpeedLabel = null;
 			}
 
-			if (latLabel != null) {
-				latLabel.Dispose ();
-				latLabel = null;
-			}
-
-			if (lonLabel != null) {
-				lonLabel.Dispose ();
-				lonLabel = null;
+			if (gotoMapsButton != null) {
+				gotoMapsButton.Dispose ();
+				gotoMapsButton = null;
 			}
 		}
 	}

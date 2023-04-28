@@ -31,6 +31,20 @@ namespace iOSMVVM.Navigation
             }
         }
 
+        public void ShowGoogleMpas(ListResponse selected)
+        {
+            try
+            {
+                var vc = UIStoryboard.FromName("Main", null).InstantiateViewController("MapViewController") as MapViewController;
+                vc.selected = selected;
+                navigationController.PushViewController(vc, false);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void StartNavigation()
         {
             try

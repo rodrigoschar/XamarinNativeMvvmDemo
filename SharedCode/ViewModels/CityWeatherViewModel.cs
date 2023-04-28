@@ -17,11 +17,13 @@ namespace SharedCode.ViewModels
     {
         private ListResponse weatherResponse;
         public readonly IClimateService Service = Ioc.Default.GetRequiredService<IClimateService>();
+        private INavigationService navigationService;
         private byte[] imageBytes;
 
-        public CityWeatherViewModel(IClimateService service)
+        public CityWeatherViewModel(IClimateService service, INavigationService navigationService)
 		{
             Service = service;
+            this.navigationService = navigationService;
         }
 
         public ListResponse WeatherResponse
@@ -47,6 +49,11 @@ namespace SharedCode.ViewModels
             var data = await Service.GetWeatherImage(iconId);
             if (data.IsFailure) return;
             ImageBytes = data.Value;
+        }
+
+        public void GoToGoogleMaps(ListResponse selected)
+        {
+            navigationService.ShowGoogleMpas(selected);
         }
     }
 }

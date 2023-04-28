@@ -96,7 +96,7 @@
                                 <rect key="frame" x="16" y="316" width="361" height="502"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nUg-LC-tKq">
-                                        <rect key="frame" x="15" y="20" width="331" height="208.33333333333334"/>
+                                        <rect key="frame" x="15" y="19.999999999999986" width="331" height="247.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03W-83-Ias">
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="21.666666666666668"/>
@@ -157,6 +157,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-Xz-jf4">
+                                                <rect key="frame" x="0.0" y="213.33333333333337" width="331" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Open in Google Maps"/>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -185,6 +190,7 @@
                         <outlet property="cityNameLabel" destination="03W-83-Ias" id="NHQ-0c-lPU"/>
                         <outlet property="cloudsCoverageLabel" destination="dbx-ev-97c" id="hwt-BA-4g9"/>
                         <outlet property="currentTemp" destination="fGT-sb-o2b" id="iUr-bP-eeN"/>
+                        <outlet property="gotoMapsButton" destination="9ab-Xz-jf4" id="QHu-Zh-1bX"/>
                         <outlet property="latLabel" destination="N3N-W8-iSv" id="jH9-RE-v0j"/>
                         <outlet property="lonLabel" destination="rGI-9j-jBO" id="mCe-Dd-yxB"/>
                         <outlet property="maxTemp" destination="H6m-p0-yK6" id="DeI-p1-6qM"/>
@@ -192,11 +198,46 @@
                         <outlet property="weatherImageView" destination="kyt-Ao-wka" id="kbI-f5-2mr"/>
                         <outlet property="weatherLabel" destination="W0E-aG-mec" id="iMk-Fx-hEH"/>
                         <outlet property="windSpeedLabel" destination="d48-d7-rYV" id="CFX-pI-B7A"/>
+                        <segue destination="NPT-Jc-Rn1" kind="show" id="g3I-CS-GQg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIy-aw-c5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1010" y="-6"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="UYJ-KL-mLr">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="NPT-Jc-Rn1" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="itG-Op-rkW"/>
+                        <viewControllerLayoutGuide type="bottom" id="th6-YY-GY9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YfB-cP-IAo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y37-3m-yU7">
+                                <rect key="frame" x="16" y="103" width="361" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="y37-3m-yU7" secondAttribute="trailing" id="Egp-OC-fIH"/>
+                            <constraint firstItem="th6-YY-GY9" firstAttribute="top" secondItem="y37-3m-yU7" secondAttribute="bottom" id="e6u-tW-idp"/>
+                            <constraint firstItem="y37-3m-yU7" firstAttribute="top" secondItem="itG-Op-rkW" secondAttribute="bottom" id="iTj-Rj-Yym"/>
+                            <constraint firstItem="y37-3m-yU7" firstAttribute="leading" secondItem="YfB-cP-IAo" secondAttribute="leadingMargin" id="zgi-Sz-G7U"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yua-x8-9Dr"/>
+                    <connections>
+                        <outlet property="mapView" destination="y37-3m-yU7" id="cid-h1-I6n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bKm-uh-G3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1853" y="-6"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

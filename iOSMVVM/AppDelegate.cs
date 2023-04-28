@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using UIKit;
 using SharedCode.ViewModels;
 using iOSMVVM.Navigation;
+using Google.Maps;
 
 namespace iOSMVVM
 {
@@ -29,6 +30,8 @@ namespace iOSMVVM
                  .AddTransient<SearchWeatherViewModel>()
                  .AddTransient<CityWeatherViewModel>()
                  .BuildServiceProvider());
+
+            MapServices.ProvideApiKey("AIzaSyCLa0JWjbupL2_C-wNalH_93v2_bMM7Emw");
             return true;
         }
 
