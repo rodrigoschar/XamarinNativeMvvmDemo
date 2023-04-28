@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Gms.Common.Apis;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
+using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -20,12 +22,13 @@ using SharedCode.Models;
 using SharedCode.Utils;
 using SharedCode.ViewModels;
 using Xamarin.Essentials;
+using static Android.Gms.Maps.GoogleMap;
 using static Android.Service.Voice.VoiceInteractionSession;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace AndroidMVVM.Views
 {
-    public class CityWeatherDetailFragment :AndroidX.Fragment.App.Fragment, IOnMapReadyCallback
+    public class CityWeatherDetailFragment :AndroidX.Fragment.App.Fragment, IOnMapReadyCallback, IInfoWindowAdapter
     {
         private ImageView ivClimate;
         private TextView tvCityName;
@@ -37,8 +40,11 @@ namespace AndroidMVVM.Views
         private TextView tvWind;
         private TextView tvLat;
         private TextView tvLon;
+        private TextView tvInfoName;
+        private TextView tvInfoAddres;
         private CityWeatherViewModel viewModel;
         public ListResponse selected;
+        private GoogleMap map;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -105,6 +111,7 @@ namespace AndroidMVVM.Views
 
         public void OnMapReady(GoogleMap googleMap)
         {
+            map = googleMap;
             LatLng location = new LatLng(viewModel.WeatherResponse.Coord.Lat, viewModel.WeatherResponse.Coord.Lon);
 
             CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -115,11 +122,37 @@ namespace AndroidMVVM.Views
             markerOpt.SetPosition(location);
             markerOpt.SetTitle(viewModel.WeatherResponse.Name);
 
-            googleMap.AddMarker(markerOpt);
+            map.AddMarker(markerOpt);
 
             CameraPosition cameraPosition = builder.Build();
             CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-            googleMap.MoveCamera(cameraUpdate);
+            map.MoveCamera(cameraUpdate);
+
+            map.MapClick += AddMarkerOnTap;
+            map.SetInfoWindowAdapter(this);
+        }
+
+        private void AddMarkerOnTap(object sender, GoogleMap.MapClickEventArgs e)
+        {
+            var markerOption = new MarkerOptions();
+            markerOption.SetPosition(e.Point);
+            markerOption.SetTitle("New marker");
+            var marker = map.AddMarker(markerOption);
+        }
+
+        public View GetInfoContents(Marker marker)
+        {
+            return null;
+        }
+
+        public View GetInfoWindow(Marker marker)
+        {
+            View view = LayoutInflater.Inflate(Resource.Layout.info_window, null, false);
+            tvInfoName = view.FindViewById<TextView>(Resource.Id.txt_infoName);
+            tvInfoAddres = view.FindViewById<TextView>(Resource.Id.txt_infoAddres);
+            tvInfoName.Text = marker.Title;
+            tvInfoAddres.Text = viewModel.WeatherResponse.Name;
+            return view;
         }
     }
 }

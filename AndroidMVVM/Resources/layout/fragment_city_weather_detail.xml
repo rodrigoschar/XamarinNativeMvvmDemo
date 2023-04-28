@@ -127,7 +127,7 @@
         <FrameLayout
             android:id="@+id/fragment_baseDetail"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="500dp"
             android:paddingTop="10dp"/>
 
 

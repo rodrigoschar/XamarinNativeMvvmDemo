@@ -3534,58 +3534,61 @@ namespace AndroidMVVM
 			public const int ic_search = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int mtrl_snackbar_background = 2131165317;
+			public const int marketIcon = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int mtrl_tabs_default_indicator = 2131165318;
+			public const int mtrl_snackbar_background = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int navigation_empty_icon = 2131165319;
+			public const int mtrl_tabs_default_indicator = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int notification_action_background = 2131165320;
+			public const int navigation_empty_icon = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int notification_bg = 2131165321;
+			public const int notification_action_background = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int notification_bg_low = 2131165322;
+			public const int notification_bg = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int notification_bg_low_normal = 2131165323;
+			public const int notification_bg_low = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int notification_bg_low_pressed = 2131165324;
+			public const int notification_bg_low_normal = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int notification_bg_normal = 2131165325;
+			public const int notification_bg_low_pressed = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int notification_bg_normal_pressed = 2131165326;
+			public const int notification_bg_normal = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int notification_icon_background = 2131165327;
+			public const int notification_bg_normal_pressed = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int notification_template_icon_bg = 2131165328;
+			public const int notification_icon_background = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int notification_template_icon_low_bg = 2131165329;
+			public const int notification_template_icon_bg = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int notification_tile_bg = 2131165330;
+			public const int notification_template_icon_low_bg = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int notify_panel_notification_icon_bg = 2131165331;
+			public const int notification_tile_bg = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int shape = 2131165332;
+			public const int notify_panel_notification_icon_bg = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int tooltip_frame_dark = 2131165333;
+			public const int shape = 2131165333;
 			
 			// aapt resource value: 0x7F070096
-			public const int tooltip_frame_light = 2131165334;
+			public const int tooltip_frame_dark = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int tooltip_frame_light = 2131165335;
 			
 			static Drawable()
 			{
@@ -4393,49 +4396,55 @@ namespace AndroidMVVM
 			public const int tv_weather = 2131230983;
 			
 			// aapt resource value: 0x7F080108
-			public const int @unchecked = 2131230984;
+			public const int txt_infoAddres = 2131230984;
 			
 			// aapt resource value: 0x7F080109
-			public const int uniform = 2131230985;
+			public const int txt_infoName = 2131230985;
 			
 			// aapt resource value: 0x7F08010A
-			public const int unlabeled = 2131230986;
+			public const int @unchecked = 2131230986;
 			
 			// aapt resource value: 0x7F08010B
-			public const int up = 2131230987;
+			public const int uniform = 2131230987;
 			
 			// aapt resource value: 0x7F08010C
-			public const int useLogo = 2131230988;
+			public const int unlabeled = 2131230988;
 			
 			// aapt resource value: 0x7F08010D
-			public const int view_offset_helper = 2131230989;
+			public const int up = 2131230989;
 			
 			// aapt resource value: 0x7F08010E
-			public const int view_tree_lifecycle_owner = 2131230990;
+			public const int useLogo = 2131230990;
 			
 			// aapt resource value: 0x7F08010F
-			public const int view_tree_on_back_pressed_dispatcher_owner = 2131230991;
+			public const int view_offset_helper = 2131230991;
 			
 			// aapt resource value: 0x7F080110
-			public const int view_tree_saved_state_registry_owner = 2131230992;
+			public const int view_tree_lifecycle_owner = 2131230992;
 			
 			// aapt resource value: 0x7F080111
-			public const int view_tree_view_model_store_owner = 2131230993;
+			public const int view_tree_on_back_pressed_dispatcher_owner = 2131230993;
 			
 			// aapt resource value: 0x7F080112
-			public const int visible = 2131230994;
+			public const int view_tree_saved_state_registry_owner = 2131230994;
 			
 			// aapt resource value: 0x7F080113
-			public const int visible_removing_fragment_view_tag = 2131230995;
+			public const int view_tree_view_model_store_owner = 2131230995;
 			
 			// aapt resource value: 0x7F080114
-			public const int wide = 2131230996;
+			public const int visible = 2131230996;
 			
 			// aapt resource value: 0x7F080115
-			public const int withText = 2131230997;
+			public const int visible_removing_fragment_view_tag = 2131230997;
 			
 			// aapt resource value: 0x7F080116
-			public const int wrap_content = 2131230998;
+			public const int wide = 2131230998;
+			
+			// aapt resource value: 0x7F080117
+			public const int withText = 2131230999;
+			
+			// aapt resource value: 0x7F080118
+			public const int wrap_content = 2131231000;
 			
 			static Id()
 			{
@@ -4705,46 +4714,49 @@ namespace AndroidMVVM
 			public const int fragment_search_city_weather = 2131427376;
 			
 			// aapt resource value: 0x7F0B0031
-			public const int mtrl_layout_snackbar = 2131427377;
+			public const int info_window = 2131427377;
 			
 			// aapt resource value: 0x7F0B0032
-			public const int mtrl_layout_snackbar_include = 2131427378;
+			public const int mtrl_layout_snackbar = 2131427378;
 			
 			// aapt resource value: 0x7F0B0033
-			public const int notification_action = 2131427379;
+			public const int mtrl_layout_snackbar_include = 2131427379;
 			
 			// aapt resource value: 0x7F0B0034
-			public const int notification_action_tombstone = 2131427380;
+			public const int notification_action = 2131427380;
 			
 			// aapt resource value: 0x7F0B0035
-			public const int notification_template_custom_big = 2131427381;
+			public const int notification_action_tombstone = 2131427381;
 			
 			// aapt resource value: 0x7F0B0036
-			public const int notification_template_icon_group = 2131427382;
+			public const int notification_template_custom_big = 2131427382;
 			
 			// aapt resource value: 0x7F0B0037
-			public const int notification_template_part_chronometer = 2131427383;
+			public const int notification_template_icon_group = 2131427383;
 			
 			// aapt resource value: 0x7F0B0038
-			public const int notification_template_part_time = 2131427384;
+			public const int notification_template_part_chronometer = 2131427384;
 			
 			// aapt resource value: 0x7F0B0039
-			public const int progress_bar = 2131427385;
+			public const int notification_template_part_time = 2131427385;
 			
 			// aapt resource value: 0x7F0B003A
-			public const int select_dialog_item_material = 2131427386;
+			public const int progress_bar = 2131427386;
 			
 			// aapt resource value: 0x7F0B003B
-			public const int select_dialog_multichoice_material = 2131427387;
+			public const int select_dialog_item_material = 2131427387;
 			
 			// aapt resource value: 0x7F0B003C
-			public const int select_dialog_singlechoice_material = 2131427388;
+			public const int select_dialog_multichoice_material = 2131427388;
 			
 			// aapt resource value: 0x7F0B003D
-			public const int support_simple_spinner_dropdown_item = 2131427389;
+			public const int select_dialog_singlechoice_material = 2131427389;
 			
 			// aapt resource value: 0x7F0B003E
-			public const int weather_card = 2131427390;
+			public const int support_simple_spinner_dropdown_item = 2131427390;
+			
+			// aapt resource value: 0x7F0B003F
+			public const int weather_card = 2131427391;
 			
 			static Layout()
 			{
