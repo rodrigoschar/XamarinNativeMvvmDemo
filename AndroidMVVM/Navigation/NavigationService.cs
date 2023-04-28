@@ -23,6 +23,11 @@ namespace AndroidMVVM.Navigation
             fragmentTransaction.Commit();
         }
 
+        public void ShowGoogleMpas(ListResponse selected)
+        {
+            
+        }
+
         public void StartNavigation()
         {
             SearchCityWeatherFragment mainFragment = new SearchCityWeatherFragment();
