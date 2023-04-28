@@ -31,7 +31,7 @@ namespace iOSMVVM
                  .AddTransient<CityWeatherViewModel>()
                  .BuildServiceProvider());
 
-            MapServices.ProvideApiKey("AIzaSyCLa0JWjbupL2_C-wNalH_93v2_bMM7Emw");
+            MapServices.ProvideApiKey("");
             return true;
         }
 
